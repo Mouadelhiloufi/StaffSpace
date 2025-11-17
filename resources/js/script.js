@@ -7,6 +7,8 @@ let inputName = document.querySelector("#inputNom")
 let inputRole = document.querySelector("#inputRole")
 let inputPhoto = document.querySelector("#inputPhoto")
 let inputEmail = document.querySelector("#inputEmail")
+let experienceContainer = document.querySelector("#experiences-container")
+let btnAjouterExp = document.querySelector("#ajouterExperience")
 let inputExperience = document.querySelector("#inputExperience")
 let inputTel = document.querySelector("#inputTel")
 let buttonAddConference = document.querySelector("#buttonAddConference")
@@ -21,6 +23,10 @@ let supprimerBigCard = document.querySelector("#supprimerBigCard")
 
 let containerPopupBigCard = document.querySelector("#popUpCard")
 
+
+
+
+
 let arrAllEmployes = [];
 let arrSallePersonelle = []
 let arrSalleArchives = []
@@ -32,6 +38,42 @@ let arrSalleServeur = []
 
 
 let smallCards = document.querySelector(".smallCard")
+
+
+btnAjouterExp.addEventListener('click', e => {
+
+    const div = document.createElement("div")
+
+    div.innerHTML = `<div id="experienceInputs">
+    <div 
+                                    class=" flex experience-item  gap-6 p-3 bg-gray-50 items-center justify-between">
+
+                                    <input id="inputExperience" type="text" placeholder="votre experience"
+                                        class="inputExperiences w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
+
+                                    <input id="inputrole" type="text" placeholder="Role"
+                                        class="inputExperiences w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
+
+
+                                </div>
+                                <div 
+                                    class="flex experience-item  p-3 bg-gray-50 items-center justify-between">
+                                    <div class="w-[47%]"><label class="block">Date From</label>
+                                        <input id="inputDateFrom" type="date"
+                                            class="inputExperiences w-[100%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
+                                    </div>
+                                    <div class="w-[47%]"><label class="block">Date To</label>
+                                        <input id="inputDateTo" type="date"
+                                            class="inputExperiences w-[100%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
+                                    </div>
+
+
+                                </div>
+                                </div>
+    `
+    experienceContainer.append(div)
+
+})
 
 
 
@@ -64,7 +106,7 @@ function displayHtmlSmallCard(arr) {
         </div>
     </div>
     `
-    
+
         modalAjout.classList.add("hidden")
     })
 }
@@ -79,19 +121,40 @@ buttonAddworker.addEventListener('click', e => {
 fermerFormulAjout.addEventListener('click', e => {
     modalAjout.classList.add("hidden")
 })
+
 submitForm.addEventListener('submit', e => {
     e.preventDefault()
+    let experiences = document.querySelectorAll("#experienceInputs")
+    let arrExperiences = [];
+    experiences.forEach(div => {
+        let experienceObjet = {
+            "entreprise": div.querySelector("#inputExperience").value,
+            "role": div.querySelector("#inputrole").value,
+            "date from": div.querySelector("#inputDateFrom").value,
+            "date to": div.querySelector("#inputDateTo").value
+        };
+
+        arrExperiences.push(experienceObjet)
+        // console.log(arrExperiences)
+    })
+
+
+    // console.log("mouad")
 
     let newEmploy = {
-        "id":Date.now(),
+        "id": Date.now(),
         "nom": inputName.value,
-        "experience":inputExperience.value,
+        // erooooooooooorhere
+        // "experience":inputExperience.value,
+        // "experinece":elelk,
+        "experience": arrExperiences,
         "role": inputRole.value,
         "photo": inputPhoto.value,
         "email": inputEmail.value,
         "tel": inputTel.value
 
     }
+    console.log(newEmploy)
     // console.log(newEmploy.nom)
 
     arrAllEmployes.push(newEmploy)
@@ -120,13 +183,14 @@ submitForm.addEventListener('submit', e => {
         arrSalleServeur.push(newEmploy)
         arrSallePersonelle.push(newEmploy)
     }
-    console.log(arrSalleReception)
+    // console.log(arrSalleReception)
 
     containerCards.innerHTML = ""
     displayHtmlSmallCard(arrAllEmployes)
 
 
 })
+
 
 buttonAddConference.addEventListener('click', e => {
     containerCards.innerHTML = ""
@@ -167,14 +231,15 @@ buttonAddArchive.addEventListener('click', e => {
 
 
 // had partie kat afficher l card kbera mli katclicker 3la small card
+
 containerCards.addEventListener('click', e => {
-    e.stopPropagation()
+    // e.stopPropagation()
     let nameSearch = e.target.querySelector("#nomId").textContent
     // console.log(e)
     arrAllEmployes.find(personne => {
         if (nameSearch == personne.nom) {
             containerPopupBigCard.classList.remove("hidden")
-            containerPopupBigCard.innerHTML="";
+            containerPopupBigCard.innerHTML = "";
             containerPopupBigCard.innerHTML = `
             <!-- affichage modal -->
 <div class="w-full max-w-sm">
@@ -205,7 +270,7 @@ containerCards.addEventListener('click', e => {
                     </div>
 
                     <div>
-                        <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Téléphone</p>
+                        <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Telephone</p>
                         <p class="text-xs text-gray-700 font-medium">${personne.tel}</p>
                     </div>
 
@@ -236,16 +301,16 @@ containerCards.addEventListener('click', e => {
 </div>
             `
             let supprimerBtn = document.querySelector("#supprimerBigCard")
-            supprimerBtn.addEventListener('click',e=>{
-                
+            supprimerBtn.addEventListener('click', e => {
+
             })
-           
+
         }
     })
     let annulerBigCard = document.querySelector("#annulerBigCard")
 
-    annulerBigCard.addEventListener('click',e=>{
-         containerPopupBigCard.classList.add("hidden")
+    annulerBigCard.addEventListener('click', e => {
+        containerPopupBigCard.classList.add("hidden")
     })
 
 
