@@ -234,10 +234,27 @@ buttonAddArchive.addEventListener('click', e => {
 
 containerCards.addEventListener('click', e => {
     // e.stopPropagation()
-    let nameSearch = e.target.querySelector("#nomId").textContent
+    let card = e.target.closest(".smallCard")
+    let nameSearch = card.querySelector("#nomId").textContent
     // console.log(e)
     arrAllEmployes.find(personne => {
+
+
+
+
+
+
+
+        // imheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeere
+
+
+
         if (nameSearch == personne.nom) {
+            // for(i=0;i<personne.experience.length;i++){
+            //     let exp = personne.experience[i].entreprise
+                
+            // }
+            
             containerPopupBigCard.classList.remove("hidden")
             containerPopupBigCard.innerHTML = "";
             containerPopupBigCard.innerHTML = `
@@ -276,7 +293,7 @@ containerCards.addEventListener('click', e => {
 
                     <div>
                         <p class="text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">Expérience</p>
-                        <p class="text-xs text-gray-700 font-medium">${personne.experience}</p>
+                        <p class="text-xs text-gray-700 font-medium">${personne}</p>
                     </div>
                 </div>
             </div>
@@ -300,6 +317,7 @@ containerCards.addEventListener('click', e => {
     </div>
 </div>
             `
+            console.log(personne.experience)
             let supprimerBtn = document.querySelector("#supprimerBigCard")
             supprimerBtn.addEventListener('click', e => {
 
