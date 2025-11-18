@@ -40,29 +40,30 @@
 
 
                     <div id="conference"
-                        class="room bg-black/50 col-start-1 col-end-3 flex flex-col justify-center items-center"><button
-                            id="buttonAddConference" class="w-[80px] bg-[red] rounded-[10px]">+ conference</button>
+                        class="salle bg-black/50 col-start-1 col-end-3 flex flex-col justify-center items-center"><button
+                            id="buttonAddConference" onclick="moveElement(this)" class="room w-[80px] bg-[red] rounded-[10px]">+ conference</button>
                     </div>
 
 
                     <div class=" bg-black/50 ">div2</div>
 
-                    <div id="salleServeur" class="room bg-gray-300/50 col-start-4 col-end-5"><button
-                            id="buttonAddServeur" class="w-[80px] bg-[red] rounded-[10px]">+ serveur</button></div>
-                    <div id="salleSecurity" class="room bg-green-200/50 col-start-5 col-end-6"><button
-                            id="buttonAddSecurity" class="w-[80px] bg-[red] rounded-[10px]">+ security</button></div>
+                    <div id="technicienIt" class="salle
+                     bg-gray-300/50 col-start-4 col-end-5"><button
+                            id="buttonAddServeur"  onclick="moveElement(this)" class="room w-[80px] bg-[red] rounded-[10px]">+ serveur</button></div>
+                    <div id="agentDeSecurite"  class="salle bg-green-200/50 col-start-5 col-end-6"><button
+                            id="buttonAddSecurity" onclick="moveElement(this)" class="room w-[80px] bg-[red] rounded-[10px]">+ security</button></div>
 
 
-                    <div id="reception"
-                        class="bg-green-800/50 row-start-2 row-end-4 col-start-1 col-end-3 flex justify-center items-center ">
-                        <button id="buttonAddReception" class="w-[80px] bg-[red] rounded-[10px]">- reception</button>
+                    <div id="Receptionnistes"
+                        class="salle bg-green-800/50 row-start-2 row-end-4 col-start-1 col-end-3 flex justify-center items-center ">
+                        <button id="buttonAddReception" onclick="moveElement(this)"  class="room w-[80px] bg-[red] rounded-[10px]">- reception</button>
                     </div>
                     <div class=" bg-green-200/50 row-start-2 row-end-4">div6</div>
                     <div class="bg-red-800/50 row-start-2 row-end-3 col-start-4 col-end-6">div7</div>
-                    <div id="sallePersonelle" class="room bg-red-100/50 col-start-4 col-end-5"><button
-                            id="buttonAddPersonelle" class="w-[80px] bg-[red] rounded-[10px]">+personelle</button></div>
-                    <div id="salleArchive" class="room bg-green-100/50 col-start-5 col-end-6"><button
-                            id="buttonAddArchive" class="w-[80px] bg-[red] rounded-[10px]">+ archive</button></div>
+                    <div id="sallePersonelle"  class="salle bg-red-100/50 col-start-4 col-end-5"><button
+                            id="buttonAddPersonelle" onclick="moveElement(this)" class="room w-[80px] bg-[red] rounded-[10px]">+personelle</button></div>
+                    <div id="archive"  class="salle  bg-green-100/50 col-start-5 col-end-6"><button
+                            id="buttonAddArchive" onclick="moveElement(this)" class="room w-[80px] bg-[red] rounded-[10px]">+ archive</button></div>
 
 
 
@@ -104,7 +105,7 @@
                                     <option>Employe</option>
                                     <option>Receptionnistes</option>
                                     <option>Technicien IT</option>
-                                    <option>Agent de sécurité</option>
+                                    <option>Agent de securite</option>
                                     <option>Manager</option>
                                     <option>Nettoyage</option>
                                 </select>
@@ -163,8 +164,8 @@
                             </div>
 
                         </div>
-                        <div><button type="button" id="ajouterExperience"
-                                class="block w-full rounded-[14px] h-[35px] border-2 border-[#66b99d]">ajouter votre
+                        <div><button type="button" onclick="moveElement(this)" id="ajouterExperience"
+                                class="room  block w-full rounded-[14px] h-[35px] border-2 border-[#66b99d]">ajouter votre
                                 experience +</button> </div>
 
                         <div class="flex gap-3 pt-4">

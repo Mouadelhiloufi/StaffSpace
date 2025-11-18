@@ -17,6 +17,8 @@ let buttonAddSecurity = document.querySelector("#buttonAddSecurity")
 let buttonAddReception = document.querySelector("#buttonAddReception")
 let buttonAddPersonelle = document.querySelector("#buttonAddPersonelle")
 let buttonAddArchive = document.querySelector("#buttonAddArchive")
+// let room = document.querySelector(".room")
+
 
 
 let supprimerBigCard = document.querySelector("#supprimerBigCard")
@@ -28,12 +30,12 @@ let containerPopupBigCard = document.querySelector("#popUpCard")
 
 
 let arrAllEmployes = [];
-let arrSallePersonelle = []
-let arrSalleArchives = []
-let arrSalleSecurity = []
-let arrSalleReception = []
-let arrSalleConference = []
-let arrSalleServeur = []
+// let arrSallePersonelle = []
+// let arrSalleArchives = []
+// let arrSalleSecurity = []
+// let arrSalleReception = []
+// let arrSalleConference = []
+// let arrSalleServeur = []
 
 
 
@@ -77,6 +79,36 @@ btnAjouterExp.addEventListener('click', e => {
 
 
 
+function displayOne(employe){
+const div = document.createElement("div")
+                    
+               div.innerHTML  = `<div class="smallCard bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
+        <div  class="p-3 flex items-center gap-3">
+            <!-- Photo -->
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500 shadow-sm flex-shrink-0">
+                <img src="${employe.photo}"
+                     alt="Photo ${employe.nom}" 
+                     class="w-full h-full object-cover">
+            </div>
+            <!-- Name and role in vertical layout -->
+            <div class="flex flex-col">
+                <h2 id="nomId" class="text-sm font-bold text-gray-800">${employe.nom}</h2>
+                <p class="text-xs text-gray-600">${employe.role}</p>
+            </div>
+        </div>
+    </div>
+    `
+    // console.log()
+    
+    containerCards.appendChild(div)
+
+}
+
+
+
+
+
+
 
 
 
@@ -90,7 +122,7 @@ function displayHtmlSmallCard(arr) {
     arr.forEach(personne => {
 
 
-        containerCards.innerHTML += `<div id="${arr.id}" class="smallCard bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
+        containerCards.innerHTML += `<div class="smallCard bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
         <div  class="p-3 flex items-center gap-3">
             <!-- Photo -->
             <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500 shadow-sm flex-shrink-0">
@@ -154,35 +186,35 @@ submitForm.addEventListener('submit', e => {
         "tel": inputTel.value
 
     }
-    console.log(newEmploy)
+    // console.log(newEmploy)
     // console.log(newEmploy.nom)
 
     arrAllEmployes.push(newEmploy)
-    if (inputRole.value.toLowerCase() == "receptionnistes") {
-        arrSalleReception.push(newEmploy)
-    }
-    if (inputRole.value.toLowerCase() == "technicien it") {
-        arrSalleServeur.push(newEmploy)
-    }
-    if (inputRole.value.toLowerCase() == "agent de sécurité") {
-        arrSalleSecurity.push(newEmploy)
-    }
-    if (inputRole.value.toLowerCase() == "manager") {
-        arrSalleSecurity.push(newEmploy)
-        arrSalleArchives.push(newEmploy)
-        arrSalleReception.push(newEmploy)
-        arrSalleConference.push(newEmploy)
-        arrSalleServeur.push(newEmploy)
-        arrSallePersonelle.push(newEmploy)
+    // if (inputRole.value.toLowerCase() == "receptionnistes") {
+    //     arrSalleReception.push(newEmploy)
+    // }
+    // if (inputRole.value.toLowerCase() == "technicien it") {
+    //     arrSalleServeur.push(newEmploy)
+    // }
+    // if (inputRole.value.toLowerCase() == "agent de sécurité") {
+    //     arrSalleSecurity.push(newEmploy)
+    // }
+    // if (inputRole.value.toLowerCase() == "manager") {
+    //     arrSalleSecurity.push(newEmploy)
+    //     arrSalleArchives.push(newEmploy)
+    //     arrSalleReception.push(newEmploy)
+    //     arrSalleConference.push(newEmploy)
+    //     arrSalleServeur.push(newEmploy)
+    //     arrSallePersonelle.push(newEmploy)
 
-    }
-    if (inputRole.value.toLowerCase() == "nettoyage") {
-        arrSalleSecurity.push(newEmploy)
-        arrSalleReception.push(newEmploy)
-        arrSalleConference.push(newEmploy)
-        arrSalleServeur.push(newEmploy)
-        arrSallePersonelle.push(newEmploy)
-    }
+    // }
+    // if (inputRole.value.toLowerCase() == "nettoyage") {
+    //     arrSalleSecurity.push(newEmploy)
+    //     arrSalleReception.push(newEmploy)
+    //     arrSalleConference.push(newEmploy)
+    //     arrSalleServeur.push(newEmploy)
+    //     arrSallePersonelle.push(newEmploy)
+    // }
     // console.log(arrSalleReception)
 
     containerCards.innerHTML = ""
@@ -192,74 +224,158 @@ submitForm.addEventListener('submit', e => {
 })
 
 
-buttonAddConference.addEventListener('click', e => {
-    containerCards.innerHTML = ""
-    displayHtmlSmallCard(arrSalleConference)
-})
+// buttonAddConference.addEventListener('click', e => {
+//     // console.log(e.target)
+//     containerCards.innerHTML = ""
+//     // displayHtmlSmallCard(arrSalleConference)
+// })
 
-buttonAddServeur.addEventListener('click', e => {
-    containerCards.innerHTML = ""
-    displayHtmlSmallCard(arrSalleServeur)
-})
+// buttonAddServeur.addEventListener('click', e => {
+//     containerCards.innerHTML = ""
+//     displayHtmlSmallCard(arrSalleServeur)
+// })
 
-buttonAddSecurity.addEventListener('click', e => {
-    containerCards.innerHTML = ""
-    displayHtmlSmallCard(arrSalleSecurity)
-})
-
-
-
-buttonAddReception.addEventListener('click', e => {
-    containerCards.innerHTML = ""
-    displayHtmlSmallCard(arrSalleReception)
-})
+// buttonAddSecurity.addEventListener('click', e => {
+//     containerCards.innerHTML = ""
+//     displayHtmlSmallCard(arrSalleSecurity)
+// })
 
 
 
-buttonAddPersonelle.addEventListener('click', e => {
-    containerCards.innerHTML = ""
-    displayHtmlSmallCard(arrSallePersonelle)
-})
-
-buttonAddArchive.addEventListener('click', e => {
-    containerCards.innerHTML = ""
-    displayHtmlSmallCard(arrSalleArchives)
-})
+// buttonAddReception.addEventListener('click', e => {
+//     containerCards.innerHTML = ""
+//     displayHtmlSmallCard(arrSalleReception)
+// })
 
 
+
+// buttonAddPersonelle.addEventListener('click', e => {
+//     containerCards.innerHTML = ""
+//     displayHtmlSmallCard(arrSallePersonelle)
+// })
+
+// buttonAddArchive.addEventListener('click', e => {
+//     containerCards.innerHTML = ""
+//     displayHtmlSmallCard(arrSalleArchives)
+// })
+
+
+
+   function experienceDisplay(data) {
+    //had function katafficher lina les entreprises
+    exp_html = "";
+
+    data.forEach(item => {
+
+        exp_html += `<p class="bg-[#66b99d] text-center rounded-lg w-[auto] text-xs text-gray-700 font-medium">${item.entreprise}</p>`
+    })
+
+    return exp_html
+}
+
+function moveElement(param) {
+    console.log("CAscasc")
+    let div = (param.closest(".salle")).id.toLowerCase().trim()
+    console.log(div)
+    // console.log(arrAllEmployes)
+    containerCards.innerHTML =""
+    arrAllEmployes.forEach(employe=>{
+
+        console.log(employe.role.toLowerCase())
+            // console.log(employe)
+            if (  div == "archive"  && employe.role.toLowerCase() == "manager" ) {
+                console.log("first")
+                displayOne(employe)
+                // probleme heeeeeeeeeeeeeeeeeeeere
+            } 
+            else if (div == "conference" &&  (employe.role.toLowerCase() == "manager" || employe.role.toLowerCase() == "nettoyage" )) {
+                console.log("second")
+                displayOne(employe)
+            }
+            else{    
+                if (employe.role.toLowerCase().split(" ").join("") === div || employe.role.toLowerCase() == "manager" || employe.role.toLowerCase() == "nettoyage" )
+                {console.log("third")
+                    displayOne(employe)
+                    // containerCards.innerHTML=""                    
+        // modalAjout.classList.add("hidden")
+                }
+            }
+            
+            
+        })
+
+     
+
+
+
+    
+    document.getElementById("containerCards").addEventListener("click" , e=>{
+       
+        // document.getElementById(div).append()
+        // console.log(e.target.closest(".smallCard"))
+        checker = true
+        let  carde = e.target.closest(".smallCard")
+        console.log(carde)   
+        
+        // document.getElementById(div).appendChild(card)
+        document.getElementById("bigCard").addEventListener("click" , e=> {
+        console.log((e.target.innerHTML).trim().length)
+        console.log((e.target.innerHTML).trim())
+           if ((e.target.innerHTML).trim()== "Ajouter") {
+            console.log("ascasc")
+            containerPopupBigCard.classList.add("hidden")
+            document.getElementById(div).appendChild(carde)
+            document.getElementById("containerCards").removeChild(carde)
+            
+
+            
+           }else {
+            console.log("jhjjkhjkh")
+           }
+        })
+        
+        
+    })
+    // document.getElementById("bigCard").addEventListener("click" , e=> {
+    //         console.log("sdvsvsvsd")
+    //     })
+}
+
+
+
+
+function cardSmaller(personne,param){
+    param.closest(".room").innerHTML=`
+    <div class="w-24 bg-white rounded-xl shadow p-2 flex flex-col items-center">
+    <img src="${personne.photo}" 
+         class="w-14 h-14 rounded-full object-cover mb-1">
+    <p class="text-xs font-semibold text-gray-800 text-center">
+        ${personne.nom}
+    </p>
+</div>`
+}
 
 
 
 // had partie kat afficher l card kbera mli katclicker 3la small card
 
+
+
+// function moveElement(param){
 containerCards.addEventListener('click', e => {
     // e.stopPropagation()
     let card = e.target.closest(".smallCard")
     let nameSearch = card.querySelector("#nomId").textContent
+    console.log("mouad")
     // console.log(e)
     arrAllEmployes.find(personne => {
-
-
-
-
-
-
-
-        // imheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeere
-
-
-
         if (nameSearch == personne.nom) {
-            // for(i=0;i<personne.experience.length;i++){
-            //     let exp = personne.experience[i].entreprise
-                
-            // }
-            
+            console.log(personne)
             containerPopupBigCard.classList.remove("hidden")
             containerPopupBigCard.innerHTML = "";
             containerPopupBigCard.innerHTML = `
             <!-- affichage modal -->
-<div class="w-full max-w-sm">
+<div  id="bigCard" class="w-full max-w-sm">
     <!-- Carte Employé -->
     <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
         <div class="p-5">
@@ -276,9 +392,9 @@ containerCards.addEventListener('click', e => {
 
                 <!-- Colonne droite -->
                 <div class="flex-1 space-y-3">
-                    <div class="pb-2 border-b-2 border-red-500">
+                    <div class="pb-2 border-b-2 border-[#66b99d]">
                         <p class="text-xs text-gray-600 font-medium">Role</p>
-                        <p class="text-base font-semibold text-red-600">${personne.role}</p>
+                        <p class="text-base font-semibold text-[#66b99d]">${personne.role}</p>
                     </div>
 
                     <div>
@@ -292,50 +408,56 @@ containerCards.addEventListener('click', e => {
                     </div>
 
                     <div>
-                        <p class="text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">Expérience</p>
-                        <p class="text-xs text-gray-700 font-medium">${personne}</p>
+                        <p class=" text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">Expérience</p>
+                        
+                      <div class="flex flex-col gap-2"> 
+            ${experienceDisplay(personne.experience)}
+            </div> 
+            
                     </div>
                 </div>
             </div>
 
             <!-- Boutons -->
             <div class="mt-5 flex gap-3">
-                <!-- Bouton Annuler -->
+                <button
+                    id="AjouterBigCard" class=" flex-1 py-2 text-sm font-semibold bg-[#66b99d] text-white rounded-lg transition">
+                    Ajouter
+                </button>
+
                 <button
                    id="annulerBigCard" class="flex-1 py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
                     Annuler
                 </button>
 
-                <!-- Bouton Supprimer -->
-                <button
-                    id="supprimerBigCard" class=" flex-1 py-2 text-sm font-semibold bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
-                    Supprimer
-                </button>
+                
+                
             </div>
 
         </div>
     </div>
-</div>
-            `
-            console.log(personne.experience)
-            let supprimerBtn = document.querySelector("#supprimerBigCard")
-            supprimerBtn.addEventListener('click', e => {
+</div>`
+            
+            let ajouterBigCard = document.querySelector("#AjouterBigCard")
+            ajouterBigCard.addEventListener('click', e => {
+                cardSmaller(personne,param)
+                card.remove()
+                
+            })
 
+            const annulerBigCard = document.querySelector("#annulerBigCard")
+
+            annulerBigCard.addEventListener('click', e => {
+
+                containerPopupBigCard.classList.add("hidden")
             })
 
         }
     })
-    let annulerBigCard = document.querySelector("#annulerBigCard")
-
-    annulerBigCard.addEventListener('click', e => {
-        containerPopupBigCard.classList.add("hidden")
-    })
-
-
-
 
 
 })
+// }
 
 
 
@@ -343,6 +465,10 @@ containerCards.addEventListener('click', e => {
 
 
 
+// room.addEventListener('click',e=>{
+//     console.log(e.target)
+//     console.log("aamiirzaml")
+// })
 
 
 
@@ -417,7 +543,13 @@ containerCards.addEventListener('click', e => {
 //     </div>
 //     `
 // })
-
+// function moveElement(param){
+//     // console.log(param)
+    // console.log(param.closest(".room"))
+    
+   
+   
+// }
 
 
 
