@@ -26,7 +26,7 @@ let smallCards = document.querySelector(".smallCard")
 btnAjouterExp.addEventListener('click', e => {
     const div = document.createElement("div")
     div.innerHTML = `
-    <div id="experienceInputs">
+    <div class="experienceInputs">
     <div class=" flex experience-item  gap-6 p-3 bg-gray-50 items-center justify-between">
         <input id="inputExperience" type="text" placeholder="votre experience"
             class="inputExperiences w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
@@ -109,8 +109,8 @@ fermerFormulAjout.addEventListener('click', e => {
 let regexNom = /^["A-Za-z "]+$/;
 let regexEmail=  /^[A-Za-z0-9.\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$/ 
 let regexTel=/^["0-9\+\- "]+$/
-
-
+ const experienceInputs=document.querySelectorAll(".experienceInputs")
+let regexExp=true;
 submitForm.addEventListener('submit', e => {
 
 
@@ -127,7 +127,7 @@ submitForm.addEventListener('submit', e => {
     
     
 
-
+   
     if (!regexNom.test(inputName.value)||(inputName.value.length<=0)){
         alert("name is invalid")}
         else if(inputPhoto.value.length<=0){
@@ -138,11 +138,20 @@ submitForm.addEventListener('submit', e => {
     }
     else if(!regexEmail.test(inputEmail.value)){
         alert("email is invalid")
-    }
+     }
+// else if(regexExp){
+// experienceInputs.forEach(experience=>{
+//     console.log(experience)
+//     if(!regexNom.test(experience.value))
+// {
+//     alert("entreprise non valide")
+// }
+// })
+// }
     
     // else if(){}
     else{
-    let experiences = document.querySelectorAll("#experienceInputs")
+    let experiences = document.querySelectorAll(".experienceInputs")
     let arrExperiences = []
     experiences.forEach(div => {
         let experienceObjet = {
@@ -172,10 +181,7 @@ submitForm.addEventListener('submit', e => {
     displayHtmlSmallCard(arrAllEmployes)
     submitForm.reset()
     }
-    const experienceInputs=document.querySelectorAll("#experienceInputs")
-experienceInputs.forEach(experience=>{
-    if(regexexperienceInputs.querySelecot("#inputExperience").value)
-})
+    
 
 })
 
