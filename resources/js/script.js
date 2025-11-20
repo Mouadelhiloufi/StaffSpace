@@ -25,7 +25,8 @@ let smallCards = document.querySelector(".smallCard")
 
 btnAjouterExp.addEventListener('click', e => {
     const div = document.createElement("div")
-    div.innerHTML = `<div id="experienceInputs">
+    div.innerHTML = `
+    <div id="experienceInputs">
     <div class=" flex experience-item  gap-6 p-3 bg-gray-50 items-center justify-between">
         <input id="inputExperience" type="text" placeholder="votre experience"
             class="inputExperiences w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
@@ -42,7 +43,8 @@ btnAjouterExp.addEventListener('click', e => {
                 class="inputExperiences w-[100%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
         </div>
     </div>
-    </div>`
+    </div>
+    `
     experienceContainer.append(div)
 })
 
@@ -121,9 +123,9 @@ submitForm.addEventListener('submit', e => {
     // if(!regexNom.test(inputExperience.value)){
     //     alert("experience not valid")
     // }
-
-
-
+    
+    
+    
 
 
     if (!regexNom.test(inputName.value)||(inputName.value.length<=0)){
@@ -170,7 +172,16 @@ submitForm.addEventListener('submit', e => {
     displayHtmlSmallCard(arrAllEmployes)
     submitForm.reset()
     }
+    const experienceInputs=document.querySelectorAll("#experienceInputs")
+experienceInputs.forEach(experience=>{
+    if(regexexperienceInputs.querySelecot("#inputExperience").value)
 })
+
+})
+
+
+
+
 
 
 function experienceDisplay(experiences) {
