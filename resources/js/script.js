@@ -126,14 +126,19 @@ submitForm.addEventListener('submit', e => {
 
 
 
-    if (!regexNom.test(inputName.value)){
+    if (!regexNom.test(inputName.value)||(inputName.value.length<=0)){
         alert("name is invalid")}
-    else if(!regexTel.test(inputTel.value)||(inputTel.value.split(" ").join("").length>13)||(inputTel.value.split(" ").join("").length<10)){
+        else if(inputPhoto.value.length<=0){
+            alert("veuillez remplir le champ du photo")
+        }
+    else if(!regexTel.test(inputTel.value)||(inputTel.value.split(" ").join("").length>13)||(inputTel.value.split(" ").join("").length<10)||(inputTel.value.length<=0)){
         alert("phone is invalid")
     }
     else if(!regexEmail.test(inputEmail.value)){
         alert("email is invalid")
     }
+    
+    // else if(){}
     else{
     let experiences = document.querySelectorAll("#experienceInputs")
     let arrExperiences = []
