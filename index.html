@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <style>
+        #containerRooms::-webkit-scrollbar{
+            display:none;
+        }
+    </style> -->
 </head>
 
 
-<body class="">
+<body>
 
-    <section class="   w-[100%]  grid grid-cols-[230px_1fr] ">
+    <section class="w-[100%]  grid grid-cols-[230px_1fr] ">
 
-        <aside id="workersZone" class="overflow-y-auto bg-[#66b99d] flex flex-col items-center p-6 gap-8">
+        <aside id="workersZone" class="overflow-y-auto overflow-x-hidden  bg-[#66b99d] flex flex-col items-center p-6 gap-8">
             <div class="flex flex-col gap-3 items-center">
                 <h1>Ajouter un worker</h1>
                 <button id="buttonAdd" class="w-[80px] bg-white rounded-[10px]">+</button>
@@ -23,10 +28,10 @@
         </aside>
 
 
-        <main class="">
+        <main class="main">
 
             <div
-                class="relative bg-[url('./resources/images/plan-croise.jpg')] aspect-[16/9.2] bg-cover  bg-no-repeat h-full">
+                class="image relative bg-[url('./resources/images/plan-croise.jpg')] aspect-[16/9.2] bg-cover  bg-no-repeat h-full">
 
                 <div id="popUpCard" class="hidden absolute">
                     <!-- hna fin ghatban card kbera -->

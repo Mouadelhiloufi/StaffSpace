@@ -129,28 +129,22 @@ submitForm.addEventListener('submit', e => {
 
    
     if (!regexNom.test(inputName.value)||(inputName.value.length<=0)){
-        alert("name is invalid")}
+        alert("name is invalid")
+    }
         else if(inputPhoto.value.length<=0){
             alert("veuillez remplir le champ du photo")
+            
         }
     else if(!regexTel.test(inputTel.value)||(inputTel.value.split(" ").join("").length>13)||(inputTel.value.split(" ").join("").length<10)||(inputTel.value.length<=0)){
         alert("phone is invalid")
+        
     }
     else if(!regexEmail.test(inputEmail.value)){
         alert("email is invalid")
+        
      }
-// else if(regexExp){
-// experienceInputs.forEach(experience=>{
-//     console.log(experience)
-//     if(!regexNom.test(experience.value))
-// {
-//     alert("entreprise non valide")
-// }
-// })
-// }
-    
-    // else if(){}
-    else{
+     
+        
     let experiences = document.querySelectorAll(".experienceInputs")
     let arrExperiences = []
     experiences.forEach(div => {
@@ -161,7 +155,17 @@ submitForm.addEventListener('submit', e => {
             "date to": div.querySelector("#inputDateTo").value
         }
         
-
+        let dateFrom=experienceObjet["date from"].toString().split("-")
+        let dateTo=experienceObjet["date to"].toString().split("-")
+        if(parseInt(dateFrom[1])>parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))){alert("invalid")
+            return false;
+        }
+        // (parseInt(dateFrom[0])>parseInt(dateTo[0])){alert("invalid")}
+        // &&parseInt(dateFrom[1]<dateTo[1])&&parseInt(dateFrom[2]<dateTo[2])){
+        //     alert("invalid")
+        // }
+       
+        
         arrExperiences.push(experienceObjet)
     })
 
@@ -175,12 +179,28 @@ submitForm.addEventListener('submit', e => {
         "tel": inputTel.value,
         "location": 'unasigned'
     }
+    
 
     arrAllEmployes.push(newEmploy)
     containerCards.innerHTML = ""
     displayHtmlSmallCard(arrAllEmployes)
     submitForm.reset()
-    }
+
+
+    
+    
+// else if(regexExp){
+// experienceInputs.forEach(experience=>{
+//     console.log(experience)
+//     if(!regexNom.test(experience.value))
+// {
+//     console.log("ahmed")
+// }
+// })
+// }
+    
+    // else if(){}
+    
     
 
 })
@@ -354,7 +374,7 @@ function cardSmaller(personne, roomClicked) {
     roomClicked.innerHTML += `
     <div class="smallerCard max-w-[100%] min-w-[30%] gap-2 bg-[#66b99d] rounded-[20px] flex items-center">
     
-        <img src="${personne.photo}" 
+        <img src="${personne.photo}"alt="photo de${personne.nom.split(" ")[1]}" 
             class="max-w-[100%] h-14 rounded-full  mb-1">
             <div class="bg-[##66b99d] w-[#]">
         <p class="text-xs text-wrap:wrap  text-white text-center">
