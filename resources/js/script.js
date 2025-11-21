@@ -105,12 +105,14 @@ fermerFormulAjout.addEventListener('click', e => {
     modalAjout.classList.add("hidden")
 })
 
+let invalidDate = true;
 
 let regexNom = /^["A-Za-z "]+$/;
 let regexEmail=  /^[A-Za-z0-9.\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$/ 
 let regexTel=/^["0-9\+\- "]+$/
  const experienceInputs=document.querySelectorAll(".experienceInputs")
-let regexExp=true;
+
+
 submitForm.addEventListener('submit', e => {
 
 
@@ -130,23 +132,33 @@ submitForm.addEventListener('submit', e => {
    
     if (!regexNom.test(inputName.value)||(inputName.value.length<=0)){
         alert("name is invalid")
+        return ;
     }
         else if(inputPhoto.value.length<=0){
             alert("veuillez remplir le champ du photo")
-            
+            return ;
         }
     else if(!regexTel.test(inputTel.value)||(inputTel.value.split(" ").join("").length>13)||(inputTel.value.split(" ").join("").length<10)||(inputTel.value.length<=0)){
         alert("phone is invalid")
-        
+        return ;
     }
     else if(!regexEmail.test(inputEmail.value)){
         alert("email is invalid")
-        
+        return ;
      }
      
-        
+    
     let experiences = document.querySelectorAll(".experienceInputs")
     let arrExperiences = []
+    if(!regexNom.test(document.querySelector("#inputExperience").value)){
+        alert("entreprise invalide")
+        
+        return;
+    }else if(!regexNom.test(document.querySelector("#inputrole").value)){
+        console.log("mouad")
+        alert("role invalide")
+        return;
+    }
     experiences.forEach(div => {
         let experienceObjet = {
             "entreprise": div.querySelector("#inputExperience").value,
@@ -157,8 +169,18 @@ submitForm.addEventListener('submit', e => {
         
         let dateFrom=experienceObjet["date from"].toString().split("-")
         let dateTo=experienceObjet["date to"].toString().split("-")
-        if(parseInt(dateFrom[1])>parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))){alert("invalid")
-            return false;
+        if(parseInt(dateFrom[0])>parseInt(dateTo[0])){
+            alert("la date de debut est plus grand que la date de fin")
+            invalidDate = false
+                return;
+        }
+        else if(parseInt(dateFrom[1])>parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))){alert("la date de debut est plus grand que la date de fin")
+            invalidDate = false
+            return ;
+        }
+        else if(parseInt(dateFrom[1])==parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))&&(parseInt(dateFrom[2])>parseInt(dateTo[2]))){alert("la date de debut est plus grand que la date de fin")
+            invalidDate = false
+            return ;
         }
         // (parseInt(dateFrom[0])>parseInt(dateTo[0])){alert("invalid")}
         // &&parseInt(dateFrom[1]<dateTo[1])&&parseInt(dateFrom[2]<dateTo[2])){
@@ -167,8 +189,9 @@ submitForm.addEventListener('submit', e => {
        
         
         arrExperiences.push(experienceObjet)
+        
     })
-
+    if (invalidDate == false) return;
     let newEmploy = {
         "id": Date.now(),
         "nom": inputName.value,
