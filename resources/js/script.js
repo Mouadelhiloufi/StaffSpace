@@ -29,9 +29,9 @@ btnAjouterExp.addEventListener('click', e => {
     <div class="experienceInputs">
     <div class=" flex experience-item  gap-6 p-3 bg-gray-50 items-center justify-between">
         <input id="inputExperience" type="text" placeholder="votre experience"
-            class="inputExperiences w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
+            class="inputExperiences inputsEntreprise w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
         <input id="inputrole" type="text" placeholder="Role"
-            class="inputExperiences w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
+            class="inputExperiences inputsRole w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
     </div>
     <div class="flex experience-item  p-3 bg-gray-50 items-center justify-between">
         <div class="w-[47%]"><label class="block">Date From</label>
@@ -105,12 +105,13 @@ fermerFormulAjout.addEventListener('click', e => {
     modalAjout.classList.add("hidden")
 })
 
-let invalidDate = true;
+let formReset = true;
 
 let regexNom = /^["A-Za-z "]+$/;
 let regexEmail=  /^[A-Za-z0-9.\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$/ 
 let regexTel=/^["0-9\+\- "]+$/
  const experienceInputs=document.querySelectorAll(".experienceInputs")
+ 
 
 
 submitForm.addEventListener('submit', e => {
@@ -150,15 +151,26 @@ submitForm.addEventListener('submit', e => {
     
     let experiences = document.querySelectorAll(".experienceInputs")
     let arrExperiences = []
-    if(!regexNom.test(document.querySelector("#inputExperience").value)){
+    let inputsEntreprise=document.querySelectorAll(".inputsEntreprise")
+     let inputsRole=document.querySelectorAll(".inputsRole")
+    inputsEntreprise.forEach(entrepriseValue=>{
+        if(!regexNom.test(entrepriseValue.value)){
         alert("entreprise invalide")
-        
-        return;
-    }else if(!regexNom.test(document.querySelector("#inputrole").value)){
-        console.log("mouad")
-        alert("role invalide")
-        return;
+        formReset=false
     }
+    })
+    
+    inputsRole.forEach(roleValue=>{
+        if(!regexNom.test(roleValue.value)){
+        alert("role invalide")
+        formReset=false
+    }
+    })
+    
+    // if(!regexNom.test(document.querySelectorAll("#inputrole").value)){
+    //     alert("role invalide")
+    //     return;
+    // }
     experiences.forEach(div => {
         let experienceObjet = {
             "entreprise": div.querySelector("#inputExperience").value,
@@ -171,27 +183,28 @@ submitForm.addEventListener('submit', e => {
         let dateTo=experienceObjet["date to"].toString().split("-")
         if(parseInt(dateFrom[0])>parseInt(dateTo[0])){
             alert("la date de debut est plus grand que la date de fin")
-            invalidDate = false
+            formReset = false
                 return;
         }
         else if(parseInt(dateFrom[1])>parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))){alert("la date de debut est plus grand que la date de fin")
-            invalidDate = false
+            formReset = false
             return ;
         }
         else if(parseInt(dateFrom[1])==parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))&&(parseInt(dateFrom[2])>parseInt(dateTo[2]))){alert("la date de debut est plus grand que la date de fin")
-            invalidDate = false
+            formReset = false
             return ;
         }
         // (parseInt(dateFrom[0])>parseInt(dateTo[0])){alert("invalid")}
         // &&parseInt(dateFrom[1]<dateTo[1])&&parseInt(dateFrom[2]<dateTo[2])){
         //     alert("invalid")
         // }
+        
        
         
         arrExperiences.push(experienceObjet)
         
     })
-    if (invalidDate == false) return;
+    if (formReset == false) return;
     let newEmploy = {
         "id": Date.now(),
         "nom": inputName.value,
