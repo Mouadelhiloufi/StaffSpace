@@ -1,0 +1,15 @@
+
+.roomName:hover {
+  color: transparent; /* hide original text */
+}
+
+/* Show "+" instead using ::after */
+.roomName:hover::after {
+  content: "+";       /* replacement text */
+  color:black;      /* color of the "+" */
+  position: absolute;
+  align-self:center;
+  
+  /* font-size: large; */
+ 
+}

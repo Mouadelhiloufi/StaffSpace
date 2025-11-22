@@ -27,6 +27,9 @@ btnAjouterExp.addEventListener('click', e => {
     const div = document.createElement("div")
     div.innerHTML = `
     <div class="experienceInputs">
+    <div class="flex justify-center items-center ">
+    <button class="removeExperience text-red-700 bg-black w-[8%] rounded-[50%]">X</button>
+    </div>
     <div class=" flex experience-item  gap-6 p-3 bg-gray-50 items-center justify-between">
         <input id="inputExperience" type="text" placeholder="votre experience"
             class="inputExperiences inputsEntreprise w-[50%] px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
@@ -46,7 +49,21 @@ btnAjouterExp.addEventListener('click', e => {
     </div>
     `
     experienceContainer.append(div)
+    let containerExperiences=document.querySelector("#experiences-container")
+    console.log(containerExperiences)
+    let removeExperience=containerExperiences.querySelectorAll(".removeExperience")
+    console.log(removeExperience)
+    removeExperience.forEach(btn=>{
+        btn.addEventListener('click',e=>{
+            let experienceToRemove=e.target.closest('.experienceInputs')
+            experienceToRemove.remove()
+
+        })
+    })
 })
+
+
+
 
 
 
@@ -77,9 +94,12 @@ function displayOne(employe) {
 
 function displayHtmlSmallCard(arr) {
 
+
+
     arr.forEach(personne => {
         if (personne.location == "unasigned") {
-            containerCards.innerHTML += `<div class="smallCard bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
+            containerCards.innerHTML += `<div class="smallCard relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
+            
         <div class="p-3 flex items-center gap-3">
             <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500 shadow-sm flex-shrink-0">
                 <img src="${personne.photo}"
@@ -96,6 +116,8 @@ function displayHtmlSmallCard(arr) {
         }
     })
 }
+
+
 
 buttonAddworker.addEventListener('click', e => {
     modalAjout.classList.remove("hidden")
@@ -115,6 +137,7 @@ let regexTel=/^["0-9\+\- "]+$/
 
 
 submitForm.addEventListener('submit', e => {
+    formReset=true
 
 
     e.preventDefault()
@@ -156,9 +179,11 @@ submitForm.addEventListener('submit', e => {
     inputsEntreprise.forEach(entrepriseValue=>{
         if(!regexNom.test(entrepriseValue.value)){
         alert("entreprise invalide")
+        
         formReset=false
     }
     })
+    console.log(formReset)
     
     inputsRole.forEach(roleValue=>{
         if(!regexNom.test(roleValue.value)){
@@ -184,15 +209,15 @@ submitForm.addEventListener('submit', e => {
         if(parseInt(dateFrom[0])>parseInt(dateTo[0])){
             alert("la date de debut est plus grand que la date de fin")
             formReset = false
-                return;
+               
         }
         else if(parseInt(dateFrom[1])>parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))){alert("la date de debut est plus grand que la date de fin")
             formReset = false
-            return ;
+            
         }
         else if(parseInt(dateFrom[1])==parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))&&(parseInt(dateFrom[2])>parseInt(dateTo[2]))){alert("la date de debut est plus grand que la date de fin")
             formReset = false
-            return ;
+            
         }
         // (parseInt(dateFrom[0])>parseInt(dateTo[0])){alert("invalid")}
         // &&parseInt(dateFrom[1]<dateTo[1])&&parseInt(dateFrom[2]<dateTo[2])){
@@ -296,6 +321,7 @@ containerRooms.addEventListener('click', e => {
                 }
             }
         })
+        
 
         document.getElementById("containerCards").addEventListener("click", e => {
             // checker = true
@@ -314,6 +340,10 @@ containerRooms.addEventListener('click', e => {
                             cardSmaller(employe, placeCard)
                             employe.location = "asigned"
                             carde.remove()
+
+
+                            
+                            
 
 
                             // document.getElementById("containerCards").removeChild(carde)
@@ -347,54 +377,59 @@ containerRooms.addEventListener('click', e => {
                     }
                 }
 
-//                 const smallerCards=container.querySelectorAll(".smallerCard")
-//                 smallerCards.forEach(card=>{
-//                     card.addEventListener('click',e=>{
-//                         e.stopPropagation()
-//                         console.log("mouad")
-//                         if(employe.location=="asigned"){
-//                         containerPopupBigCard.innerHTML = `
-// <div id="bigCard" class="w-full max-w-sm">
-//     <div class="bg-white rounded-xl overflow-hidden">
-//         <div class="p-5">
-//             <div class="flex gap-4">
-//                 <div class="flex flex-col items-center flex-shrink-0">
-//                     <div class="w-24 h-24 rounded-full overflow-hidden border-3 border-blue-500 shadow-md mb-3">
-//                         <img src="${employe.photo}" alt="Photo ${employe.nom}" class="w-full h-full object-cover">
-//                     </div>
-//                     <h2 class="text-lg font-bold text-gray-800 text-center">${employe.nom}</h2>
-//                 </div>
-//                 <div class="flex-1 space-y-3">
-//                     <div class="pb-2 border-b-2 border-[#66b99d]">
-//                         <p class="text-xs text-gray-600 font-medium">Role</p>
-//                         <p class="text-base font-semibold text-[#66b99d]">${employe.role}</p>
-//                     </div>
-//                     <div>
-//                         <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Email</p>
-//                         <p class="text-xs text-gray-700 font-medium">${employe.email}</p>
-//                     </div>
-//                     <div>
-//                         <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Telephone</p>
-//                         <p class="text-xs text-gray-700 font-medium">${employe.tel}</p>
-//                     </div>
-//                     <div>
-//                         <p class=" text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">Expérience</p>
-//                         <div class="flex flex-col gap-2">${experienceDisplay(employe.experience)}</div>
-//                     </div>
-//                 </div>
-//             </div>
-//             <div class="mt-5 flex gap-3">
-//                 <button id="AjouterBigCard" class="flex-1 py-2 text-sm font-semibold bg-[#66b99d] text-white rounded-lg transition">Ajouter</button>
-//                 <button id="annulerBigCard" class="flex-1 py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">Annuler</button>
-//             </div>
-//         </div>
-//     </div>
-// </div>`
-// }
+                const placesCard=document.querySelectorAll(".placeCard")
+                placesCard.forEach(card=>{
+                    // une fois t cliki sur smallerCard it show info
+                    card.addEventListener('click',e=>{   
+                        let smallerCard=e.target.closest('.smallerCard')
+                        console.log(smallerCard)
+                        e.stopPropagation()
+
+                        console.log("mouad")
+                        if(employe.location=="asigned"){
+                            containerPopupBigCard.classList.remove("hidden")
+                        containerPopupBigCard.innerHTML = `
+<div id="bigCard" class="w-full max-w-sm">
+    <div class="z-50 bg-white rounded-[15px] overflow-hidden">
+        <div class="p-5">
+            <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full overflow-hidden border-3  mb-3">
+                        <img src="${personne.photo}" alt="Photo ${personne.nom}" class="w-full h-full object-cover">
+                    </div>
+                    <h2 class="text-lg text-gray-800 text-center">${personne.nom}</h2>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div class="pb-2 border-b-2 border-[#66b99d]">
+                        <p class="text-xs text-gray-600 font-medium">Role</p>
+                        <p class=" font-semibold text-[#66b99d]">${personne.role}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium uppercase ">Email</p>
+                        <p class="text-xs text-gray-700 font-medium">${personne.email}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium uppercase">Telephone</p>
+                        <p class="text-xs text-gray-700 font-medium">${personne.tel}</p>
+                    </div>
+                    <div>
+                        <p class=" text-xs text-gray-500 font-medium uppercase mb-1">Expérience</p>
+                        <div class="flex flex-col gap-2">${experienceDisplay(personne.experience)}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 flex gap-3">
+                <button id="AjouterBigCard" class="flex-1 py-2 text-sm  bg-[#66b99d] text-white rounded-lg transition">Ajouter</button>
+                <button id="annulerBigCard" class="flex-1 py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-400">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>`
+}
 
                         
-//                     })
-//                 })
+                    })
+                })
 
 
 
@@ -411,11 +446,15 @@ function cardSmaller(personne, roomClicked) {
     <div class="smallerCard max-w-[100%] min-w-[30%] gap-2 bg-[#66b99d] rounded-[20px] flex items-center">
     
         <img src="${personne.photo}"alt="photo de${personne.nom.split(" ")[1]}" 
-            class="max-w-[100%] h-14 rounded-full  mb-1">
-            <div class="bg-[##66b99d] w-[#]">
+            class="max-w-[100%] h-12  rounded-full  mb-1">
+            <div class="flex flex-col gap-2 bg-[##66b99d] w-[#]">
         <p class="text-xs text-wrap:wrap  text-white text-center">
             ${personne.nom.split(" ")[0]}
-        </p></div>
+        </p>
+        <p class="text-xs text-wrap:wrap  text-red-600 text-center">
+            ${personne.role}
+        </p>
+        </div>
         <button class="btnDeleteSmallerCard bg-white rounded-[100%] md:-top-6 md:w-4 left-[44%] text-red-700">X</button>
     </div>`
 }
@@ -428,37 +467,37 @@ containerCards.addEventListener('click', e => {
             containerPopupBigCard.classList.remove("hidden")
             containerPopupBigCard.innerHTML = `
 <div id="bigCard" class="w-full max-w-sm">
-    <div class="bg-white rounded-xl overflow-hidden">
+    <div class="z-50 bg-white rounded-[15px] overflow-hidden">
         <div class="p-5">
             <div class="flex gap-4">
-                <div class="flex flex-col items-center flex-shrink-0">
-                    <div class="w-24 h-24 rounded-full overflow-hidden border-3 border-blue-500 shadow-md mb-3">
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full overflow-hidden border-3  mb-3">
                         <img src="${personne.photo}" alt="Photo ${personne.nom}" class="w-full h-full object-cover">
                     </div>
-                    <h2 class="text-lg font-bold text-gray-800 text-center">${personne.nom}</h2>
+                    <h2 class="text-lg text-gray-800 text-center">${personne.nom}</h2>
                 </div>
-                <div class="flex-1 space-y-3">
+                <div class="flex flex-col gap-3">
                     <div class="pb-2 border-b-2 border-[#66b99d]">
                         <p class="text-xs text-gray-600 font-medium">Role</p>
-                        <p class="text-base font-semibold text-[#66b99d]">${personne.role}</p>
+                        <p class=" font-semibold text-[#66b99d]">${personne.role}</p>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Email</p>
+                        <p class="text-xs text-gray-500 font-medium uppercase ">Email</p>
                         <p class="text-xs text-gray-700 font-medium">${personne.email}</p>
                     </div>
                     <div>
-                        <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Telephone</p>
+                        <p class="text-xs text-gray-500 font-medium uppercase">Telephone</p>
                         <p class="text-xs text-gray-700 font-medium">${personne.tel}</p>
                     </div>
                     <div>
-                        <p class=" text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">Expérience</p>
+                        <p class=" text-xs text-gray-500 font-medium uppercase mb-1">Expérience</p>
                         <div class="flex flex-col gap-2">${experienceDisplay(personne.experience)}</div>
                     </div>
                 </div>
             </div>
             <div class="mt-5 flex gap-3">
-                <button id="AjouterBigCard" class="flex-1 py-2 text-sm font-semibold bg-[#66b99d] text-white rounded-lg transition">Ajouter</button>
-                <button id="annulerBigCard" class="flex-1 py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">Annuler</button>
+                <button id="AjouterBigCard" class="flex-1 py-2 text-sm  bg-[#66b99d] text-white rounded-lg transition">Ajouter</button>
+                <button id="annulerBigCard" class="flex-1 py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-400">Annuler</button>
             </div>
         </div>
     </div>
