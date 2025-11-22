@@ -291,15 +291,12 @@ containerRooms.addEventListener('click', e => {
     if (container) {
 
         salleName = e.target.closest(".salle").id.toLowerCase()
-        // roesl = {
-        //     "manager": ["conference", 'archives'],
-        // }
+       
         containerCards.innerHTML = ""
         arrAllEmployes.forEach(employe => {
-            // console.log(employe.role.toLowerCase().split(" ").join(""))
-            employeRole = employe.role.toLowerCase()
-            // if (roels[employe.role].include(salleName))
-            // console.log(employe.location)
+           
+           let employeRole = employe.role.toLowerCase()
+            
 
 
 
@@ -442,23 +439,27 @@ const annulerBigCard = document.querySelector("#annulerBigCard")
 
 // zid scrollBar l aside
 
-    const btnDelete = containerRooms.querySelectorAll(".btnDeleteSmallerCard")
+    // const btnDelete = containerRooms.querySelectorAll(".btnDeleteSmallerCard")
     
-                           btnDelete.forEach(btn=>{
+    //                        btnDelete.forEach(btn=>{
                            
-                           btn.addEventListener('click', e => {
+    //                        btn.addEventListener('click', e => {
                             
-                                let smallerCard=e.target.closest(".smallerCard")
+    //                             let smallerCard=e.target.closest(".smallerCard")
+    //                             containerCards.innerHTML=""
+    //                                 console.log("moaud")
+    //                             e.stopPropagation()
+    //                             smallerCard.remove()
+    //                             console.log(worker.nom)
+                                 
                                 
-                                    console.log("moaud")
-                                e.stopPropagation()
-                                smallerCard.remove()
-                                worker.location="unasigned"
-                                displayOne(worker)
+    //                             worker.location="unasigned"
+                               
+                                
 
                                 
-                            })
-                            })
+    //                         })
+    //                         })
                         
 
 
@@ -468,6 +469,7 @@ const annulerBigCard = document.querySelector("#annulerBigCard")
 
                     })
                 })
+                // displayOne(worker)
 
 
 
