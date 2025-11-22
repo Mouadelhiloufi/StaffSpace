@@ -94,7 +94,7 @@ function displayOne(employe) {
 
 function displayHtmlSmallCard(arr) {
 
-
+aa
 
     arr.forEach(personne => {
         if (personne.location == "unasigned") {
