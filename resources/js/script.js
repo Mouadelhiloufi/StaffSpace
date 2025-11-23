@@ -17,6 +17,9 @@ let containerPopupBigCard = document.querySelector("#popUpCard")
 let arrAllEmployes = []
 let smallCards = document.querySelector(".smallCard")
 
+
+
+
 btnAjouterExp.addEventListener('click', e => {
     const div = document.createElement("div")
     div.innerHTML = `
@@ -278,7 +281,7 @@ let div = null;
 // function moveElement(roomClicked) {
 let containerRooms = document.getElementById("containerRooms")
 
-
+        
 
 let container = null;
 containerRooms.onclick =e=> {
@@ -330,6 +333,10 @@ containerRooms.onclick =e=> {
 
                             let placeCard = container.querySelector(".placeCard")
                             cardSmaller(employe, placeCard)
+                            alertServeur()
+                            alertSecurity()
+                            alertReceptionnistes()
+                            alertArchives()
                             employe.location = "asigned"
                             carde.remove()
 
@@ -485,7 +492,7 @@ containerRooms.onclick =e=> {
 
 
 btnDelete=containerRooms.querySelectorAll(".btnDeleteSmallerCard")
-            console.log(btnDelete)
+         
 
             btnDelete.forEach(btn => {
 
@@ -496,6 +503,10 @@ btnDelete=containerRooms.querySelectorAll(".btnDeleteSmallerCard")
                    
                     e.stopPropagation()
                     smallerCard.remove()
+                    alertServeur()
+                    alertSecurity()
+                    alertReceptionnistes()
+                    alertArchives()
 
                     arrAllEmployes.forEach(employ=>{
                         if(employ.nom.split(" ")[0].trim()==smallerCard.querySelector("#rechNom").textContent.trim()){
@@ -545,6 +556,68 @@ btnDelete=containerRooms.querySelectorAll(".btnDeleteSmallerCard")
 
 
 }
+
+function alertServeur(){
+    let roomLength=null;
+let serveurRoom=document.querySelector("#technicienIt")
+let smallerCards=serveurRoom.querySelectorAll(".smallerCard")
+roomLength=smallerCards.length;
+        
+        if(roomLength>0){
+            console.log("mouad")
+            serveurRoom.classList.remove("bg-red-900/50")
+        }
+        else{
+            serveurRoom.classList.add("bg-red-900/50")
+        }
+    }
+
+
+    function alertSecurity(){
+    let roomLength=null;
+let serveurRoom=document.querySelector("#agentDeSecurite")
+let smallerCards=serveurRoom.querySelectorAll(".smallerCard")
+roomLength=smallerCards.length;
+        
+        if(roomLength>0){
+            console.log("mouad")
+            serveurRoom.classList.remove("bg-red-900/50")
+        }
+        else{
+            serveurRoom.classList.add("bg-red-900/50")
+        }
+    }
+
+    function alertReceptionnistes(){
+    let roomLength=null;
+let serveurRoom=document.querySelector("#Receptionnistes")
+let smallerCards=serveurRoom.querySelectorAll(".smallerCard")
+roomLength=smallerCards.length;
+        
+        if(roomLength>0){
+            console.log("mouad")
+            serveurRoom.classList.remove("bg-red-900/50")
+        }
+        else{
+            serveurRoom.classList.add("bg-red-900/50")
+        }
+    }
+
+    function alertArchives(){
+    let roomLength=null;
+let serveurRoom=document.querySelector("#archive")
+let smallerCards=serveurRoom.querySelectorAll(".smallerCard")
+roomLength=smallerCards.length;
+        
+        if(roomLength>0){
+            console.log("mouad")
+            serveurRoom.classList.remove("bg-red-900/50")
+        }
+        else{
+            serveurRoom.classList.add("bg-red-900/50")
+        }
+    }
+
 
 
 
