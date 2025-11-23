@@ -384,9 +384,9 @@ containerRooms.onclick =e=> {
     }
 
 
-    const btnDelete = containerRooms.querySelectorAll(".btnDeleteSmallerCard")
+    
 
-arrAllEmployes.forEach(worker => {
+// arrAllEmployes.forEach(worker => {
 
 
 
@@ -399,22 +399,27 @@ arrAllEmployes.forEach(worker => {
 
 
     const smallerCards = containerRooms.querySelectorAll(".smallerCard")
-    console.log(smallerCards);
+    
    
     
     smallerCards.forEach(card => {
         // une fois t cliki sur smallerCard it show info
-        smallCards.onclick=e=>{
+        card.onclick=e=>{
             e.stopPropagation()
-            console.log(card)
-            let smallerCard = e.target.closest('.smallerCard')
+           
+            
             
 
-            let nameRech = smallerCard.querySelector("#rechNom").textContent.trim()
+            let nameRech = card.querySelector("#rechNom").textContent.trim()
+            
             
 
 
+            arrAllEmployes.forEach(worker=>{
+                
             if (nameRech == worker.nom.trim().split(" ")[0]) {
+                console.log(worker.nom.trim().split(" ")[0])
+                console.log(nameRech)
 
 
 
@@ -465,13 +470,28 @@ arrAllEmployes.forEach(worker => {
 
                 })
             }
+            })
 
             // zid scrollBar l aside
 
             // heeeeeeeeeeeeeereistheprblm 11 hier
 
 
+            
 
+
+
+
+
+
+
+        }
+        // endCard
+
+
+
+btnDelete=containerRooms.querySelectorAll(".btnDeleteSmallerCard")
+            console.log(btnDelete)
 
             btnDelete.forEach(btn => {
 
@@ -482,14 +502,23 @@ arrAllEmployes.forEach(worker => {
                    
                     e.stopPropagation()
                     smallerCard.remove()
+
+                    arrAllEmployes.forEach(employ=>{
+                        if(employ.nom.split(" ")[0].trim()==smallerCard.querySelector("#nomRech").trim()){
+                            employ.location="unasigned"
+                        }
+                    })
+
+
+
                   
 
 
-                    arrAllEmployes.forEach(employe => {
-                        if (nameRech == employe.nom.trim().split(" ")[0]) {
-                            employe.location = "unasigned"
-                        }
-                    })
+                    // arrAllEmployes.forEach(employe => {
+                    //     if (nameRech == employe.nom.trim().split(" ")[0]) {
+                    //         employe.location = "unasigned"
+                    //     }
+                    // })
                     // unasigned don't apply for everyone
 
 
@@ -501,23 +530,15 @@ arrAllEmployes.forEach(worker => {
 
 
 
-
-
-
-
-        }
     })
-    arrAllEmployes.forEach(employe => {
-
-
-    })
+    
 
 
 
 
     // displayHtmlSmallCard(worker)
 
-})
+// })
 
 
 
