@@ -293,6 +293,7 @@ containerRooms.addEventListener('click', e => {
         salleName = e.target.closest(".salle").id.toLowerCase()
        
         containerCards.innerHTML = ""
+    
         arrAllEmployes.forEach(employe => {
            
            let employeRole = employe.role.toLowerCase()
@@ -379,13 +380,14 @@ containerRooms.addEventListener('click', e => {
                 console.log(placesCard)
                 placesCard.forEach(card=>{
                     // une fois t cliki sur smallerCard it show info
-                    card.addEventListener('click',e=>{   
+                    card.onclick=e=>{   
                          e.stopPropagation()
                         let smallerCard=e.target.closest('.smallerCard')
-                        console.log(smallerCard)
-                        let nameRech=smallerCard.querySelector("#rechNom").textContent
-                        console.log(nameRech.trim())
-                        if (nameRech.trim()==worker.nom.split(" ")[0]){
+                        // console.log(smallerCard)
+                        let nameRech=smallerCard.querySelector("#rechNom").textContent.trim()
+                        
+                        // console.log(nameRech.trim())
+                        if (nameRech==worker.nom.split(" ")[0]){
                         // console.log(smallerCard)
                        
 
@@ -439,27 +441,32 @@ const annulerBigCard = document.querySelector("#annulerBigCard")
 
 // zid scrollBar l aside
 
-    // const btnDelete = containerRooms.querySelectorAll(".btnDeleteSmallerCard")
+// heeeeeeeeeeeeeereistheprblm 11 hier
+
+
+    const btnDelete = containerRooms.querySelectorAll(".btnDeleteSmallerCard")
     
-    //                        btnDelete.forEach(btn=>{
+                           btnDelete.forEach(btn=>{
                            
-    //                        btn.addEventListener('click', e => {
+                           btn.addEventListener('click', e => {
                             
-    //                             let smallerCard=e.target.closest(".smallerCard")
-    //                             containerCards.innerHTML=""
-    //                                 console.log("moaud")
-    //                             e.stopPropagation()
-    //                             smallerCard.remove()
-    //                             console.log(worker.nom)
+                                let smallerCard=e.target.closest(".smallerCard")
+                                
+                                    console.log("moaud")
+                                e.stopPropagation()
+                                smallerCard.remove()
+                                console.log(worker.nom)
                                  
                                 
-    //                             worker.location="unasigned"
+                                worker.location="unasigned"
+                                // unasigned don't apply for everyone
+                                
                                
                                 
 
                                 
-    //                         })
-    //                         })
+                             })
+                           })
                         
 
 
@@ -467,16 +474,25 @@ const annulerBigCard = document.querySelector("#annulerBigCard")
 
 
 
-                    })
+                    }
                 })
-                // displayOne(worker)
+                 arrAllEmployes.forEach(employe => {
+           
+           
+         })
 
 
 
 
-
+displayHtmlSmallCard(worker)
 
                 })
+
+
+
+
+
+                
 
 
 
