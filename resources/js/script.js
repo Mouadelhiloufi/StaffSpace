@@ -11,12 +11,6 @@ let experienceContainer = document.querySelector("#experiences-container")
 let btnAjouterExp = document.querySelector("#ajouterExperience")
 let inputExperience = document.querySelector("#inputExperience")
 let inputTel = document.querySelector("#inputTel")
-// let buttonAddConference = document.querySelector("#buttonAddConference")
-// let buttonAddServeur = document.querySelector("#buttonAddServeur")
-// let buttonAddSecurity = document.querySelector("#buttonAddSecurity")
-// let buttonAddReception = document.querySelector("#buttonAddReception")
-// let buttonAddPersonelle = document.querySelector("#buttonAddPersonelle")
-// let buttonAddArchive = document.querySelector("#buttonAddArchive")
 const btnDeleteSmallerCard = document.querySelector("#btnDeleteSmallerCard")
 let supprimerBigCard = document.querySelector("#supprimerBigCard")
 let containerPopupBigCard = document.querySelector("#popUpCard")
@@ -504,10 +498,13 @@ btnDelete=containerRooms.querySelectorAll(".btnDeleteSmallerCard")
                     smallerCard.remove()
 
                     arrAllEmployes.forEach(employ=>{
-                        if(employ.nom.split(" ")[0].trim()==smallerCard.querySelector("#nomRech").trim()){
+                        if(employ.nom.split(" ")[0].trim()==smallerCard.querySelector("#rechNom").textContent.trim()){
                             employ.location="unasigned"
                         }
+                        
                     })
+                    containerCards.innerHTML=""
+                    displayHtmlSmallCard(arrAllEmployes)
 
 
 
