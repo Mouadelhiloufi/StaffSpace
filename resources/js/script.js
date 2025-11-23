@@ -398,13 +398,13 @@ arrAllEmployes.forEach(worker => {
     // let containerRooms = document.getElementById("containerRooms")
 
 
-    const placesCard = containerRooms.querySelectorAll(".placeCard")
-    console.log(placesCard);
+    const smallerCards = containerRooms.querySelectorAll(".smallerCard")
+    console.log(smallerCards);
+   
     
-    
-    placesCard.forEach(card => {
+    smallerCards.forEach(card => {
         // une fois t cliki sur smallerCard it show info
-        card.onclick=e=>{
+        smallCards.onclick=e=>{
             e.stopPropagation()
             console.log(card)
             let smallerCard = e.target.closest('.smallerCard')
