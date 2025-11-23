@@ -47,9 +47,9 @@ btnAjouterExp.addEventListener('click', e => {
     `
     experienceContainer.append(div)
     let containerExperiences = document.querySelector("#experiences-container")
-    
+
     let removeExperience = containerExperiences.querySelectorAll(".removeExperience")
-    
+
     removeExperience.forEach(btn => {
         btn.addEventListener('click', e => {
             let experienceToRemove = e.target.closest('.experienceInputs')
@@ -180,7 +180,7 @@ submitForm.addEventListener('submit', e => {
             formReset = false
         }
     })
-   
+
 
     inputsRole.forEach(roleValue => {
         if (!regexNom.test(roleValue.value)) {
@@ -281,10 +281,10 @@ let div = null;
 // function moveElement(roomClicked) {
 let containerRooms = document.getElementById("containerRooms")
 
-        
+
 
 let container = null;
-containerRooms.onclick =e=> {
+containerRooms.onclick = e => {
 
     container = e.target.closest(".salle")
     if (container) {
@@ -301,18 +301,18 @@ containerRooms.onclick =e=> {
 
 
             if (salleName == "archive" && employeRole == "manager" && employe.location == "unasigned") {
-                   
+
                 displayOne(employe)
 
             } else if (salleName == "conference" && (employeRole == "manager" || employeRole == "nettoyage") && (employe.location == "unasigned")) {
                 displayOne(employe)
-              
+
             } else {
                 if ((salleName != "archive") && (employeRole.split(" ").join("") === salleName || employeRole == "manager" || employeRole == "nettoyage" || salleName == "conference") && (employe.location == "unasigned")) {
                     displayOne(employe)
-                   
 
-                    
+
+
                 }
             }
         })
@@ -322,23 +322,29 @@ containerRooms.onclick =e=> {
             // checker = true
             let carde = e.target.closest(".smallCard")
             let nameRech = carde.querySelector("#nomId").textContent
-           
+
             arrAllEmployes.forEach(employe => {
                 if (nameRech == employe.nom) {
 
                     document.getElementById("bigCard").onclick = (e) => {
                         if ((e.target.innerHTML).trim() == "Ajouter") {
                             containerPopupBigCard.classList.add("hidden")
-
-
+                            let roomCliquer = container.querySelectorAll(".smallerCard")
+                            // console.log(test)
                             let placeCard = container.querySelector(".placeCard")
-                            cardSmaller(employe, placeCard)
-                            alertServeur()
-                            alertSecurity()
-                            alertReceptionnistes()
-                            alertArchives()
-                            employe.location = "asigned"
-                            carde.remove()
+                            if (roomCliquer.length < 4) {
+                                cardSmaller(employe, placeCard)
+                                alertServeur()
+                                alertSecurity()
+                                alertReceptionnistes()
+                                alertArchives()
+                                employe.location = "asigned"
+                                carde.remove()
+                            } else {
+                                alert("le maximum des salles est 4 personnes")
+                                return;
+
+                            }
 
 
 
@@ -385,9 +391,9 @@ containerRooms.onclick =e=> {
     }
 
 
-    
 
-// arrAllEmployes.forEach(worker => {
+
+    // arrAllEmployes.forEach(worker => {
 
 
 
@@ -400,35 +406,35 @@ containerRooms.onclick =e=> {
 
 
     const smallerCards = containerRooms.querySelectorAll(".smallerCard")
-    
-   
-    
+
+
+
     smallerCards.forEach(card => {
         // une fois t cliki sur smallerCard it show info
-        card.onclick=e=>{
+        card.onclick = e => {
             e.stopPropagation()
-           
-            
-            
+
+
+
 
             let nameRech = card.querySelector("#rechNom").textContent.trim()
-            
-            
-
-
-            arrAllEmployes.forEach(worker=>{
-                
-            if (nameRech == worker.nom.trim().split(" ")[0]) {
-                console.log(worker.nom.trim().split(" ")[0])
-                console.log(nameRech)
 
 
 
 
+            arrAllEmployes.forEach(worker => {
 
-                containerPopupBigCard.classList.remove("hidden")
-                containerPopupBigCard.innerHTML = ""
-                containerPopupBigCard.innerHTML = `
+                if (nameRech == worker.nom.trim().split(" ")[0]) {
+                    console.log(worker.nom.trim().split(" ")[0])
+                    console.log(nameRech)
+
+
+
+
+
+                    containerPopupBigCard.classList.remove("hidden")
+                    containerPopupBigCard.innerHTML = ""
+                    containerPopupBigCard.innerHTML = `
 <div id="bigCard" class="w-full max-w-sm">
     <div class="z-50 bg-white rounded-[15px] overflow-hidden">
         <div class="p-5">
@@ -465,12 +471,12 @@ containerRooms.onclick =e=> {
     </div>
 </div>`
 
-                const annulerBigCard = document.querySelector("#annulerBigCard")
-                annulerBigCard.addEventListener('click', e => {
-                    containerPopupBigCard.classList.add("hidden")
+                    const annulerBigCard = document.querySelector("#annulerBigCard")
+                    annulerBigCard.addEventListener('click', e => {
+                        containerPopupBigCard.classList.add("hidden")
 
-                })
-            }
+                    })
+                }
             })
 
             // zid scrollBar l aside
@@ -478,7 +484,7 @@ containerRooms.onclick =e=> {
             // heeeeeeeeeeeeeereistheprblm 11 hier
 
 
-            
+
 
 
 
@@ -491,62 +497,62 @@ containerRooms.onclick =e=> {
 
 
 
-btnDelete=containerRooms.querySelectorAll(".btnDeleteSmallerCard")
-         
-
-            btnDelete.forEach(btn => {
-
-                btn.onclick = e => {
-
-                    let smallerCard = e.target.closest(".smallerCard")
-
-                   
-                    e.stopPropagation()
-                    smallerCard.remove()
-                    alertServeur()
-                    alertSecurity()
-                    alertReceptionnistes()
-                    alertArchives()
-
-                    arrAllEmployes.forEach(employ=>{
-                        if(employ.nom.split(" ")[0].trim()==smallerCard.querySelector("#rechNom").textContent.trim()){
-                            employ.location="unasigned"
-                        }
-                        
-                    })
-                    containerCards.innerHTML=""
-                    displayHtmlSmallCard(arrAllEmployes)
+        btnDelete = containerRooms.querySelectorAll(".btnDeleteSmallerCard")
 
 
+        btnDelete.forEach(btn => {
 
-                  
+            btn.onclick = e => {
+
+                let smallerCard = e.target.closest(".smallerCard")
 
 
-                    // arrAllEmployes.forEach(employe => {
-                    //     if (nameRech == employe.nom.trim().split(" ")[0]) {
-                    //         employe.location = "unasigned"
-                    //     }
-                    // })
-                    // unasigned don't apply for everyone
+                e.stopPropagation()
+                smallerCard.remove()
+                alertServeur()
+                alertSecurity()
+                alertReceptionnistes()
+                alertArchives()
+
+                arrAllEmployes.forEach(employ => {
+                    if (employ.nom.split(" ")[0].trim() == smallerCard.querySelector("#rechNom").textContent.trim()) {
+                        employ.location = "unasigned"
+                    }
+
+                })
+                containerCards.innerHTML = ""
+                displayHtmlSmallCard(arrAllEmployes)
 
 
 
 
 
-                }
-            })
+
+                // arrAllEmployes.forEach(employe => {
+                //     if (nameRech == employe.nom.trim().split(" ")[0]) {
+                //         employe.location = "unasigned"
+                //     }
+                // })
+                // unasigned don't apply for everyone
+
+
+
+
+
+            }
+        })
 
 
 
     })
-    
+
 
 
 
 
     // displayHtmlSmallCard(worker)
 
-// })
+    // })
 
 
 
@@ -557,66 +563,66 @@ btnDelete=containerRooms.querySelectorAll(".btnDeleteSmallerCard")
 
 }
 
-function alertServeur(){
-    let roomLength=null;
-let serveurRoom=document.querySelector("#technicienIt")
-let smallerCards=serveurRoom.querySelectorAll(".smallerCard")
-roomLength=smallerCards.length;
-        
-        if(roomLength>0){
-            console.log("mouad")
-            serveurRoom.classList.remove("bg-red-900/50")
-        }
-        else{
-            serveurRoom.classList.add("bg-red-900/50")
-        }
+function alertServeur() {
+    let roomLength = null;
+    let serveurRoom = document.querySelector("#technicienIt")
+    let smallerCards = serveurRoom.querySelectorAll(".smallerCard")
+    roomLength = smallerCards.length;
+
+    if (roomLength > 0) {
+        console.log("mouad")
+        serveurRoom.classList.remove("bg-red-900/50")
     }
+    else {
+        serveurRoom.classList.add("bg-red-900/50")
+    }
+}
 
 
-    function alertSecurity(){
-    let roomLength=null;
-let serveurRoom=document.querySelector("#agentDeSecurite")
-let smallerCards=serveurRoom.querySelectorAll(".smallerCard")
-roomLength=smallerCards.length;
-        
-        if(roomLength>0){
-            console.log("mouad")
-            serveurRoom.classList.remove("bg-red-900/50")
-        }
-        else{
-            serveurRoom.classList.add("bg-red-900/50")
-        }
-    }
+function alertSecurity() {
+    let roomLength = null;
+    let serveurRoom = document.querySelector("#agentDeSecurite")
+    let smallerCards = serveurRoom.querySelectorAll(".smallerCard")
+    roomLength = smallerCards.length;
 
-    function alertReceptionnistes(){
-    let roomLength=null;
-let serveurRoom=document.querySelector("#Receptionnistes")
-let smallerCards=serveurRoom.querySelectorAll(".smallerCard")
-roomLength=smallerCards.length;
-        
-        if(roomLength>0){
-            console.log("mouad")
-            serveurRoom.classList.remove("bg-red-900/50")
-        }
-        else{
-            serveurRoom.classList.add("bg-red-900/50")
-        }
+    if (roomLength > 0) {
+        console.log("mouad")
+        serveurRoom.classList.remove("bg-red-900/50")
     }
+    else {
+        serveurRoom.classList.add("bg-red-900/50")
+    }
+}
 
-    function alertArchives(){
-    let roomLength=null;
-let serveurRoom=document.querySelector("#archive")
-let smallerCards=serveurRoom.querySelectorAll(".smallerCard")
-roomLength=smallerCards.length;
-        
-        if(roomLength>0){
-            console.log("mouad")
-            serveurRoom.classList.remove("bg-red-900/50")
-        }
-        else{
-            serveurRoom.classList.add("bg-red-900/50")
-        }
+function alertReceptionnistes() {
+    let roomLength = null;
+    let serveurRoom = document.querySelector("#Receptionnistes")
+    let smallerCards = serveurRoom.querySelectorAll(".smallerCard")
+    roomLength = smallerCards.length;
+
+    if (roomLength > 0) {
+        console.log("mouad")
+        serveurRoom.classList.remove("bg-red-900/50")
     }
+    else {
+        serveurRoom.classList.add("bg-red-900/50")
+    }
+}
+
+function alertArchives() {
+    let roomLength = null;
+    let serveurRoom = document.querySelector("#archive")
+    let smallerCards = serveurRoom.querySelectorAll(".smallerCard")
+    roomLength = smallerCards.length;
+
+    if (roomLength > 0) {
+        console.log("mouad")
+        serveurRoom.classList.remove("bg-red-900/50")
+    }
+    else {
+        serveurRoom.classList.add("bg-red-900/50")
+    }
+}
 
 
 
@@ -636,21 +642,34 @@ roomLength=smallerCards.length;
 // }
 // worikiing   heeere
 function cardSmaller(personne, roomClicked) {
+
     roomClicked.innerHTML += `
-    <div class="smallerCard max-w-[100%] min-w-[30%] gap-2 bg-[#66b99d] rounded-[20px] flex items-center">
-    
-        <img src="${personne.photo}"alt="photo de${personne.nom.split(" ")[1]}" 
-            class="max-w-[100%] h-12  rounded-full  mb-1">
-            <div class="flex flex-col gap-2 bg-[##66b99d] w-[#]">
-        <p id="rechNom" class="text-xs text-wrap:wrap  text-white text-center">
+    <div class="smallerCard 
+    w-full max-w-[120px] md:max-w-[140px]
+    bg-[#66b99d] rounded-[15px] 
+    flex items-center gap-2 p-2 relative">
+
+    <img src="${personne.photo}"
+        alt="photo de ${personne.nom.split(' ')[1]}"
+        class="w-10 h-10 md:w-12 md:h-12 rounded-[100%]">
+
+    <div class="flex flex-col ">
+        <p id="rechNom" class="text-[10px] md:text-xs text-white text-center break-words">
             ${personne.nom.split(" ")[0]}
         </p>
-        <p class="text-xs text-wrap:wrap  text-red-600 text-center">
+        <p class="text-[10px] md:text-xs text-red-600 ">
             ${personne.role}
         </p>
-        </div>
-        <button class="btnDeleteSmallerCard bg-white rounded-[100%] md:-top-6 md:w-4 left-[44%] text-red-700">X</button>
-    </div>`
+    </div>
+
+    <button class="btnDeleteSmallerCard 
+        absolute -top-2 -right-2 
+        bg-white w-5 h-5 md:w-6 md:h-6 
+        rounded-full text-red-700 text-xs flex items-center justify-center">
+        X
+    </button>
+</div>
+`
 }
 
 containerCards.addEventListener('click', e => {
