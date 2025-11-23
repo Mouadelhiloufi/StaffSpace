@@ -49,13 +49,13 @@ btnAjouterExp.addEventListener('click', e => {
     </div>
     `
     experienceContainer.append(div)
-    let containerExperiences=document.querySelector("#experiences-container")
-    console.log(containerExperiences)
-    let removeExperience=containerExperiences.querySelectorAll(".removeExperience")
-    console.log(removeExperience)
-    removeExperience.forEach(btn=>{
-        btn.addEventListener('click',e=>{
-            let experienceToRemove=e.target.closest('.experienceInputs')
+    let containerExperiences = document.querySelector("#experiences-container")
+    
+    let removeExperience = containerExperiences.querySelectorAll(".removeExperience")
+    
+    removeExperience.forEach(btn => {
+        btn.addEventListener('click', e => {
+            let experienceToRemove = e.target.closest('.experienceInputs')
             experienceToRemove.remove()
 
         })
@@ -73,9 +73,9 @@ btnAjouterExp.addEventListener('click', e => {
 
 
 function displayOne(employe) {
-    if(employe.location=="unasigned"){
-    const div = document.createElement("div")
-    div.innerHTML = `<div class="smallCard bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
+    if (employe.location == "unasigned") {
+        const div = document.createElement("div")
+        div.innerHTML = `<div class="smallCard bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
         <div class="p-3 flex items-center gap-3">
             <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500 shadow-sm flex-shrink-0">
                 <img src="${employe.photo}"
@@ -88,7 +88,7 @@ function displayOne(employe) {
             </div>
         </div>
     </div>`
-    containerCards.appendChild(div)
+        containerCards.appendChild(div)
     }
 }
 
@@ -130,14 +130,14 @@ fermerFormulAjout.addEventListener('click', e => {
 let formReset = true;
 
 let regexNom = /^["A-Za-z "]+$/;
-let regexEmail=  /^[A-Za-z0-9.\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$/ 
-let regexTel=/^["0-9\+\- "]+$/
- const experienceInputs=document.querySelectorAll(".experienceInputs")
- 
+let regexEmail = /^[A-Za-z0-9.\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$/
+let regexTel = /^["0-9\+\- "]+$/
+const experienceInputs = document.querySelectorAll(".experienceInputs")
+
 
 
 submitForm.addEventListener('submit', e => {
-    formReset=true
+    formReset = true
 
 
     e.preventDefault()
@@ -149,49 +149,49 @@ submitForm.addEventListener('submit', e => {
     // if(!regexNom.test(inputExperience.value)){
     //     alert("experience not valid")
     // }
-    
-    
-    
 
-   
-    if (!regexNom.test(inputName.value)||(inputName.value.length<=0)){
+
+
+
+
+    if (!regexNom.test(inputName.value) || (inputName.value.length <= 0)) {
         alert("name is invalid")
-        return ;
+        return;
     }
-        else if(inputPhoto.value.length<=0){
-            alert("veuillez remplir le champ du photo")
-            return ;
-        }
-    else if(!regexTel.test(inputTel.value)||(inputTel.value.split(" ").join("").length>13)||(inputTel.value.split(" ").join("").length<10)||(inputTel.value.length<=0)){
+    else if (inputPhoto.value.length <= 0) {
+        alert("veuillez remplir le champ du photo")
+        return;
+    }
+    else if (!regexTel.test(inputTel.value) || (inputTel.value.split(" ").join("").length > 13) || (inputTel.value.split(" ").join("").length < 10) || (inputTel.value.length <= 0)) {
         alert("phone is invalid")
-        return ;
+        return;
     }
-    else if(!regexEmail.test(inputEmail.value)){
+    else if (!regexEmail.test(inputEmail.value)) {
         alert("email is invalid")
-        return ;
-     }
-     
-    
+        return;
+    }
+
+
     let experiences = document.querySelectorAll(".experienceInputs")
     let arrExperiences = []
-    let inputsEntreprise=document.querySelectorAll(".inputsEntreprise")
-     let inputsRole=document.querySelectorAll(".inputsRole")
-    inputsEntreprise.forEach(entrepriseValue=>{
-        if(!regexNom.test(entrepriseValue.value)){
-        alert("entreprise invalide")
-        
-        formReset=false
-    }
+    let inputsEntreprise = document.querySelectorAll(".inputsEntreprise")
+    let inputsRole = document.querySelectorAll(".inputsRole")
+    inputsEntreprise.forEach(entrepriseValue => {
+        if (!regexNom.test(entrepriseValue.value)) {
+            alert("entreprise invalide")
+
+            formReset = false
+        }
     })
-    console.log(formReset)
-    
-    inputsRole.forEach(roleValue=>{
-        if(!regexNom.test(roleValue.value)){
-        alert("role invalide")
-        formReset=false
-    }
+   
+
+    inputsRole.forEach(roleValue => {
+        if (!regexNom.test(roleValue.value)) {
+            alert("role invalide")
+            formReset = false
+        }
     })
-    
+
     // if(!regexNom.test(document.querySelectorAll("#inputrole").value)){
     //     alert("role invalide")
     //     return;
@@ -203,31 +203,33 @@ submitForm.addEventListener('submit', e => {
             "date from": div.querySelector("#inputDateFrom").value,
             "date to": div.querySelector("#inputDateTo").value
         }
-        
-        let dateFrom=experienceObjet["date from"].toString().split("-")
-        let dateTo=experienceObjet["date to"].toString().split("-")
-        if(parseInt(dateFrom[0])>parseInt(dateTo[0])){
+
+        let dateFrom = experienceObjet["date from"].toString().split("-")
+        let dateTo = experienceObjet["date to"].toString().split("-")
+        if (parseInt(dateFrom[0]) > parseInt(dateTo[0])) {
             alert("la date de debut est plus grand que la date de fin")
             formReset = false
-               
+
         }
-        else if(parseInt(dateFrom[1])>parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))){alert("la date de debut est plus grand que la date de fin")
+        else if (parseInt(dateFrom[1]) > parseInt(dateTo[1]) && (parseInt(dateFrom[0]) == parseInt(dateTo[0]))) {
+            alert("la date de debut est plus grand que la date de fin")
             formReset = false
-            
+
         }
-        else if(parseInt(dateFrom[1])==parseInt(dateTo[1])&&(parseInt(dateFrom[0])==parseInt(dateTo[0]))&&(parseInt(dateFrom[2])>parseInt(dateTo[2]))){alert("la date de debut est plus grand que la date de fin")
+        else if (parseInt(dateFrom[1]) == parseInt(dateTo[1]) && (parseInt(dateFrom[0]) == parseInt(dateTo[0])) && (parseInt(dateFrom[2]) > parseInt(dateTo[2]))) {
+            alert("la date de debut est plus grand que la date de fin")
             formReset = false
-            
+
         }
         // (parseInt(dateFrom[0])>parseInt(dateTo[0])){alert("invalid")}
         // &&parseInt(dateFrom[1]<dateTo[1])&&parseInt(dateFrom[2]<dateTo[2])){
         //     alert("invalid")
         // }
-        
-       
-        
+
+
+
         arrExperiences.push(experienceObjet)
-        
+
     })
     if (formReset == false) return;
     let newEmploy = {
@@ -240,7 +242,7 @@ submitForm.addEventListener('submit', e => {
         "tel": inputTel.value,
         "location": 'unasigned'
     }
-    
+
 
     arrAllEmployes.push(newEmploy)
     containerCards.innerHTML = ""
@@ -248,21 +250,21 @@ submitForm.addEventListener('submit', e => {
     submitForm.reset()
 
 
-    
-    
-// else if(regexExp){
-// experienceInputs.forEach(experience=>{
-//     console.log(experience)
-//     if(!regexNom.test(experience.value))
-// {
-//     console.log("ahmed")
-// }
-// })
-// }
-    
+
+
+    // else if(regexExp){
+    // experienceInputs.forEach(experience=>{
+    //   
+    //     if(!regexNom.test(experience.value))
+    // {
+    //     
+    // }
+    // })
+    // }
+
     // else if(){}
-    
-    
+
+
 
 })
 
@@ -285,47 +287,45 @@ let containerRooms = document.getElementById("containerRooms")
 
 
 let container = null;
-containerRooms.addEventListener('click', e => {
+containerRooms.onclick =e=> {
 
     container = e.target.closest(".salle")
     if (container) {
 
         salleName = e.target.closest(".salle").id.toLowerCase()
-       
+
         containerCards.innerHTML = ""
-    
+
         arrAllEmployes.forEach(employe => {
-           
-           let employeRole = employe.role.toLowerCase()
-            
+
+            let employeRole = employe.role.toLowerCase()
+
 
 
 
             if (salleName == "archive" && employeRole == "manager" && employe.location == "unasigned") {
-                console.log(employe.location)
-                // console.log("first")    
+                   
                 displayOne(employe)
 
             } else if (salleName == "conference" && (employeRole == "manager" || employeRole == "nettoyage") && (employe.location == "unasigned")) {
                 displayOne(employe)
-                console.log(employe.location)
-                // console.log("second")
+              
             } else {
                 if ((salleName != "archive") && (employeRole.split(" ").join("") === salleName || employeRole == "manager" || employeRole == "nettoyage" || salleName == "conference") && (employe.location == "unasigned")) {
                     displayOne(employe)
-                    console.log(employe.location)
+                   
 
-                    // console.log("third")
+                    
                 }
             }
         })
-        
+
 
         document.getElementById("containerCards").addEventListener("click", e => {
             // checker = true
             let carde = e.target.closest(".smallCard")
             let nameRech = carde.querySelector("#nomId").textContent
-            // console.log(arrAllEmployes);
+           
             arrAllEmployes.forEach(employe => {
                 if (nameRech == employe.nom) {
 
@@ -340,17 +340,17 @@ containerRooms.addEventListener('click', e => {
                             carde.remove()
 
 
-                            
-                            
+
+
 
 
                             // document.getElementById("containerCards").removeChild(carde)
 
 
-// erooooooooooooooooooooooooor heeeeeeeeeeer hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                            // erooooooooooooooooooooooooor heeeeeeeeeeer hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 
-                           
-                            
+
+
 
 
 
@@ -359,7 +359,7 @@ containerRooms.addEventListener('click', e => {
                         }
                     }
                 }
-                
+
 
 
 
@@ -367,35 +367,62 @@ containerRooms.addEventListener('click', e => {
             })
 
         })
-        
 
 
 
-                arrAllEmployes.forEach(worker=>{
 
 
-                
 
-                const placesCard=containerRooms.querySelectorAll(".placeCard")
-                console.log(placesCard)
-                placesCard.forEach(card=>{
-                    // une fois t cliki sur smallerCard it show info
-                    card.onclick=e=>{   
-                         e.stopPropagation()
-                        let smallerCard=e.target.closest('.smallerCard')
-                        // console.log(smallerCard)
-                        let nameRech=smallerCard.querySelector("#rechNom").textContent.trim()
-                        
-                        // console.log(nameRech.trim())
-                        if (nameRech==worker.nom.split(" ")[0]){
-                        // console.log(smallerCard)
-                       
 
-                        console.log("mouad")
-                        if(worker.location=="asigned"){
-                            containerPopupBigCard.classList.remove("hidden")
-                            containerPopupBigCard.innerHTML=""
-                        containerPopupBigCard.innerHTML = `
+
+
+
+
+
+
+
+    }
+
+
+    const btnDelete = containerRooms.querySelectorAll(".btnDeleteSmallerCard")
+
+arrAllEmployes.forEach(worker => {
+
+
+
+
+
+
+
+
+    // let containerRooms = document.getElementById("containerRooms")
+
+
+    const placesCard = containerRooms.querySelectorAll(".placeCard")
+    console.log(placesCard);
+    
+    
+    placesCard.forEach(card => {
+        // une fois t cliki sur smallerCard it show info
+        card.onclick=e=>{
+            e.stopPropagation()
+            console.log(card)
+            let smallerCard = e.target.closest('.smallerCard')
+            
+
+            let nameRech = smallerCard.querySelector("#rechNom").textContent.trim()
+            
+
+
+            if (nameRech == worker.nom.trim().split(" ")[0]) {
+
+
+
+
+
+                containerPopupBigCard.classList.remove("hidden")
+                containerPopupBigCard.innerHTML = ""
+                containerPopupBigCard.innerHTML = `
 <div id="bigCard" class="w-full max-w-sm">
     <div class="z-50 bg-white rounded-[15px] overflow-hidden">
         <div class="p-5">
@@ -431,73 +458,80 @@ containerRooms.addEventListener('click', e => {
         </div>
     </div>
 </div>`
-}
-const annulerBigCard = document.querySelector("#annulerBigCard")
-            annulerBigCard.addEventListener('click', e => {
-                containerPopupBigCard.classList.add("hidden")
 
+                const annulerBigCard = document.querySelector("#annulerBigCard")
+                annulerBigCard.addEventListener('click', e => {
+                    containerPopupBigCard.classList.add("hidden")
+
+                })
+            }
+
+            // zid scrollBar l aside
+
+            // heeeeeeeeeeeeeereistheprblm 11 hier
+
+
+
+
+            btnDelete.forEach(btn => {
+
+                btn.onclick = e => {
+
+                    let smallerCard = e.target.closest(".smallerCard")
+
+                   
+                    e.stopPropagation()
+                    smallerCard.remove()
+                  
+
+
+                    arrAllEmployes.forEach(employe => {
+                        if (nameRech == employe.nom.trim().split(" ")[0]) {
+                            employe.location = "unasigned"
+                        }
+                    })
+                    // unasigned don't apply for everyone
+
+
+
+
+
+                }
             })
+
+
+
+
+
+
+
+        }
+    })
+    arrAllEmployes.forEach(employe => {
+
+
+    })
+
+
+
+
+    // displayHtmlSmallCard(worker)
+
+})
+
+
+
+
+
+
+
+
 }
 
-// zid scrollBar l aside
-
-// heeeeeeeeeeeeeereistheprblm 11 hier
-
-
-    const btnDelete = containerRooms.querySelectorAll(".btnDeleteSmallerCard")
-    
-                           btnDelete.forEach(btn=>{
-                           
-                           btn.addEventListener('click', e => {
-                            
-                                let smallerCard=e.target.closest(".smallerCard")
-                                
-                                    console.log("moaud")
-                                e.stopPropagation()
-                                smallerCard.remove()
-                                console.log(worker.nom)
-                                 
-                                
-                                worker.location="unasigned"
-                                // unasigned don't apply for everyone
-                                
-                               
-                                
-
-                                
-                             })
-                           })
-                        
 
 
 
 
-
-
-                    }
-                })
-                 arrAllEmployes.forEach(employe => {
-           
-           
-         })
-
-
-
-
-displayHtmlSmallCard(worker)
-
-                })
-
-
-
-
-
-                
-
-
-
-    }
-})
 
 
 
