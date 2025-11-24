@@ -74,7 +74,7 @@ function displayOne(employe) {
         const div = document.createElement("div")
         div.innerHTML = `<div class="smallCard bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
         <div class="p-3 flex items-center gap-3">
-            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500 shadow-sm flex-shrink-0">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#66b99d] shadow-sm flex-shrink-0">
                 <img src="${employe.photo}"
                      alt="Photo ${employe.nom}" 
                      class="w-full h-full object-cover">
@@ -98,7 +98,7 @@ function displayHtmlSmallCard(arr) {
             containerCards.innerHTML += `<div class="smallCard relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
             
         <div class="p-3 flex items-center gap-3">
-            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500 shadow-sm flex-shrink-0">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#66b99d] shadow-sm flex-shrink-0">
                 <img src="${personne.photo}"
                      alt="Photo ${personne.nom}" 
                      class="w-full h-full object-cover">
@@ -132,9 +132,18 @@ let regexTel = /^["0-9\+\- "]+$/
 const experienceInputs = document.querySelectorAll(".experienceInputs")
 
 
+let photoInput=document.querySelector("#inputPhoto")
+
+let photoTest=document.getElementById('inputPhotoTest')
+
+photoInput.addEventListener('input',e=>{
+        photoTest.src=inputPhoto.value.trim()||"data:image/jpeg;base64,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"
+    })
 
 submitForm.addEventListener('submit', e => {
     formReset = true
+    
+    
 
 
     e.preventDefault()
@@ -146,18 +155,14 @@ submitForm.addEventListener('submit', e => {
     // if(!regexNom.test(inputExperience.value)){
     //     alert("experience not valid")
     // }
-
-
-
-
+    
 
     if (!regexNom.test(inputName.value) || (inputName.value.length <= 0)) {
         alert("name is invalid")
         return;
     }
     else if (inputPhoto.value.length <= 0) {
-        alert("veuillez remplir le champ du photo")
-        return;
+        inputPhoto.value="data:image/jpeg;base64,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"
     }
     else if (!regexTel.test(inputTel.value) || (inputTel.value.split(" ").join("").length > 13) || (inputTel.value.split(" ").join("").length < 10) || (inputTel.value.length <= 0)) {
         alert("phone is invalid")
@@ -193,6 +198,8 @@ submitForm.addEventListener('submit', e => {
     //     alert("role invalide")
     //     return;
     // }
+
+    
     experiences.forEach(div => {
         let experienceObjet = {
             "entreprise": div.querySelector("#inputExperience").value,
@@ -239,6 +246,8 @@ submitForm.addEventListener('submit', e => {
         "tel": inputTel.value,
         "location": 'unasigned'
     }
+
+    
 
 
     arrAllEmployes.push(newEmploy)
@@ -479,9 +488,9 @@ containerRooms.onclick = e => {
                 }
             })
 
-            // zid scrollBar l aside
+           
 
-            // heeeeeeeeeeeeeereistheprblm 11 hier
+            
 
 
 
@@ -642,22 +651,22 @@ function alertArchives() {
 // }
 // worikiing   heeere
 function cardSmaller(personne, roomClicked) {
-
+// change test size
     roomClicked.innerHTML += `
-    <div class="smallerCard 
-    w-full max-w-[120px] md:max-w-[140px]
+    <div class="smallerCard  
+     w-[94px] lg:w-[110px] max-w-[120px] md:max-w-[140px]
     bg-[#66b99d] rounded-[15px] 
-    flex items-center gap-2 p-2 relative">
+    flex items-center gap-1 p-2 relative">
 
     <img src="${personne.photo}"
         alt="photo de ${personne.nom.split(' ')[1]}"
         class="w-10 h-10 md:w-12 md:h-12 rounded-[100%]">
 
     <div class="flex flex-col ">
-        <p id="rechNom" class="text-[10px] md:text-xs text-white text-center break-words">
+        <p id="rechNom" class="text-[6px] lg:text-[8px] text-white text-center">
             ${personne.nom.split(" ")[0]}
         </p>
-        <p class="text-[10px] md:text-xs text-red-600 ">
+        <p class=" md:text-[5px] text-red-600 ">
             ${personne.role}
         </p>
     </div>

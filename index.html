@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H</title>
+    <title>Staff Space</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./resources/css/style.css">
     <!-- <style>
@@ -45,7 +45,7 @@
                     <div id="conference"
                         class=" salle cursor-pointer relative col-start-1 col-end-3 flex flex-col justify-center items-center gap-4 ">
                         <div class="roomName absolute  flex justify-center items-center w-[90%] top-0 rounded-bl-[16px] rounded-br-[16px] h-[13%] bg-[#66b99d] mr-[6px] "><p class="text-[10px] md:text-[14px] lg:text-xl">CONFERENCE</p></div>
-                        <div class="w-[auto] placeCard flex flex-wrap justify-center gap-2"></div>
+                        <div class="placeCard mt-4 w-[auto]  flex flex-wrap justify-center gap-2"></div>
                         <!-- <div class="w-[10%]"><button id="buttonAddConference" 
                                 class="room w-[100%] bg-[#66b99d] rounded-[10px]">+</button></div> -->
                     </div>
@@ -147,6 +147,9 @@
                             <input id="inputPhoto" type="url" placeholder="URL de photo"
                                 class="w-full px-4 py-2 border-2 border-[#66b99d] rounded-[14px]">
 
+                        </div>
+                        <div> 
+                            <div class="w-[40%] h-[140px]"><img id="inputPhotoTest" class="rounded-full h-[90%] w-full" src="data:image/jpeg;base64,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" alt="photo profile"></div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
