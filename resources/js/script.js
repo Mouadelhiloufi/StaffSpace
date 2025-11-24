@@ -281,8 +281,8 @@ submitForm.addEventListener('submit', e => {
 
 function experienceDisplay(experiences) {
     exp_html = ""
-    experiences.forEach(item => {
-        exp_html += `<p class="bg-[#66b99d] text-center rounded-lg w-[auto] text-xs text-gray-700 font-medium">${item.entreprise}</p>`
+    experiences.forEach(exp => {
+        exp_html += `<p class="bg-[#66b99d] text-center rounded-lg w-[auto] text-xs text-gray-700 font-medium">${exp.entreprise}</p>`
     })
     return exp_html
 }
@@ -474,7 +474,7 @@ containerRooms.onclick = e => {
                 </div>
             </div>
             <div class="mt-5 flex gap-3">
-                <button id="annulerBigCard" class="flex-1 py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-400">Annuler</button>
+                <button id="annulerBigCard" class="w-full py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-400">Annuler</button>
             </div>
         </div>
     </div>
@@ -666,7 +666,7 @@ function cardSmaller(personne, roomClicked) {
         <p id="rechNom" class="text-[6px] lg:text-[8px] text-white text-center">
             ${personne.nom.split(" ")[0]}
         </p>
-        <p class=" md:text-[5px] text-red-600 ">
+        <p class=" text-[5px] lg:text-[7px]  text-red-600 ">
             ${personne.role}
         </p>
     </div>
@@ -718,8 +718,8 @@ containerCards.addEventListener('click', e => {
                 </div>
             </div>
             <div class="mt-5 flex gap-3">
-                <button id="AjouterBigCard" class="flex-1 py-2 text-sm  bg-[#66b99d] text-white rounded-lg transition">Ajouter</button>
-                <button id="annulerBigCard" class="flex-1 py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-400">Annuler</button>
+                <button id="AjouterBigCard" class="w-[50%] py-2 text-sm  bg-[#66b99d] text-white rounded-lg ">Ajouter</button>
+                <button id="annulerBigCard" class="w-[50%] py-2 text-sm font-medium bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-400">Annuler</button>
             </div>
         </div>
     </div>
