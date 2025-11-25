@@ -75,16 +75,17 @@ btnAjouterExp.addEventListener('click', e => {
 function displayOne(employe) {
     if (employe.location == "unasigned") {
         const div = document.createElement("div")
-        div.innerHTML = `<div class="smallCard bg-white rounded-lg shadow-md overflow-hidden w-48">
+        div.innerHTML = `<div class="smallCard relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-48">
+            
         <div class="p-3 flex items-center gap-3">
-            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#66b99d]">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-[#66b99d] shadow-sm flex-shrink-0">
                 <img src="${employe.photo}"
                      alt="Photo ${employe.nom}" 
-                     class="w-full h-full">
+                     class="w-full h-full object-cover">
             </div>
             <div class="flex flex-col">
                 <h2 id="nomId" class="text-sm font-bold text-gray-800">${employe.nom}</h2>
-                <p class="text-xs text-gray-600">${employe.role}</p>
+                <p class="roleSmallCard text-xs text-gray-600">${employe.role}</p>
             </div>
         </div>
     </div>`
@@ -215,6 +216,7 @@ submitForm.addEventListener('submit', e => {
         }
 
         let dateFrom = experienceObjet.dateFrom.split("-")
+        
         let dateTo = experienceObjet.dateTo.split("-")
         if (parseInt(dateFrom[0]) > parseInt(dateTo[0])) {
             alert("la date de debut est plus grand que la date de fin")
@@ -270,7 +272,7 @@ submitForm.addEventListener('submit', e => {
 
 
 
-// ajouter chaque experience dans le modal ajout
+// ajouter chaque experience dans details popUp
 
 function experienceDisplay(experiences) {
     exp_html = ""
