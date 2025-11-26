@@ -27,7 +27,7 @@ btnAjouterExp.addEventListener('click', e => {
     div.innerHTML = `
     <div class="experienceInputs">
     <div class="flex justify-center items-center ">
-    <button class="removeExperience text-red-700 bg-black w-[8%] rounded-[50%]">X</button>
+    <button type="button" class="removeExperience text-red-700 bg-black w-[8%] rounded-[50%]">X</button>
     </div>
     <div class=" flex experience-item  gap-6 p-3 bg-gray-50 items-center justify-between">
         <input id="inputExperience" type="text" placeholder="votre experience"
@@ -70,7 +70,7 @@ btnAjouterExp.addEventListener('click', e => {
 
 
 
-// function pour afficher les employes dans aside 
+// function pour afficher les employes dans aside filtrer
 
 function displayOne(employe) {
     if (employe.location == "unasigned") {
@@ -97,7 +97,7 @@ function displayOne(employe) {
 
 
 
-// cette fonction est pour afficher small cards dans aside 
+// cette fonction est pour afficher small cards dans aside sans filtre
 
 function displayHtmlSmallCard(arr) {
 
@@ -219,17 +219,17 @@ submitForm.addEventListener('submit', e => {
         
         let dateTo = experienceObjet.dateTo.split("-")
         if (parseInt(dateFrom[0]) > parseInt(dateTo[0])) {
-            alert("la date de debut est plus grand que la date de fin")
+            alert("l'année de debut est plus grand que l'année de fin")
             formReset = false
 
         }
         else if (parseInt(dateFrom[1]) > parseInt(dateTo[1]) && (parseInt(dateFrom[0]) == parseInt(dateTo[0]))) {
-            alert("la date de debut est plus grand que la date de fin")
+            alert("le mois de debut est plus grand que mois deu fin")
             formReset = false
 
         }
         else if (parseInt(dateFrom[1]) == parseInt(dateTo[1]) && (parseInt(dateFrom[0]) == parseInt(dateTo[0])) && (parseInt(dateFrom[2]) > parseInt(dateTo[2]))) {
-            alert("la date de debut est plus grand que la date de fin")
+            alert("le jour de debut est plus grand que jour du fin")
             formReset = false
 
         }
@@ -252,6 +252,7 @@ submitForm.addEventListener('submit', e => {
         "location": 'unasigned'
     }
 
+    
 
 
 
@@ -347,7 +348,7 @@ containerRooms.onclick = e => {
                         if ((e.target.innerHTML).trim() == "Ajouter") {
                             containerPopupBigCard.classList.add("hidden")
                             let roomCliquer = container.querySelectorAll(".smallerCard")
-                            // console.log(test)
+                           
 
                             let placeCard = container.querySelector(".placeCard")
                             if (roomCliquer.length < 4) {
@@ -565,7 +566,6 @@ function alertSecurity() {
     roomLength = smallerCards.length;
 
     if (roomLength > 0) {
-        console.log("mouad")
         serveurRoom.classList.remove("bg-red-900/50")
     }
     else {
@@ -580,7 +580,6 @@ function alertReceptionnistes() {
     roomLength = smallerCards.length;
 
     if (roomLength > 0) {
-        console.log("mouad")
         serveurRoom.classList.remove("bg-red-900/50")
     }
     else {
@@ -595,7 +594,6 @@ function alertArchives() {
     roomLength = smallerCards.length;
 
     if (roomLength > 0) {
-        console.log("mouad")
         serveurRoom.classList.remove("bg-red-900/50")
     }
     else {
@@ -705,4 +703,7 @@ containerCards.addEventListener('click', e => {
         }
     })
 })
+
+
+
 
