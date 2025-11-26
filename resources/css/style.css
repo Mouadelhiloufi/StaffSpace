@@ -1,16 +1,16 @@
 
 .roomName:hover {
-  color: transparent; /* hide original text */
+  color: transparent; 
 }
 
-/* Show "+" instead using ::after */
+
 .roomName:hover::after {
-  content: "+";       /* replacement text */
-  color:black;      /* color of the "+" */
+  content: "+";       
+  color:black;      
   position: absolute;
   align-self:center;
   
-  /* font-size: large; */
+ 
  
 }
 #workersZone{

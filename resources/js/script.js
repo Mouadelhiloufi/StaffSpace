@@ -214,6 +214,7 @@ submitForm.addEventListener('submit', e => {
             "dateFrom": div.querySelector("#inputDateFrom").value,
             "dateTo": div.querySelector("#inputDateTo").value
         }
+        div.remove()
 
         let dateFrom = experienceObjet.dateFrom.split("-")
         
